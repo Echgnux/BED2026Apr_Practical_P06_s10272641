@@ -10,8 +10,8 @@ app.get("/about", (req, res) => {
   res.send("About Page");
 });
 
-app.get("/hello", (req, res) => {
-  res.send("Hello from IT!");
+app.get("/contact", (req, res) => {
+  res.send("Contact Page");
 });
 
 app.listen(PORT, () => {
