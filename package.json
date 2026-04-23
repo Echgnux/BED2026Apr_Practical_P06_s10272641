@@ -1,0 +1,24 @@
+{
+  "name": "bed2026apr_practical_p06_s10272641",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Echgnux/BED2026Apr_Practical_P06_s10272641.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Echgnux/BED2026Apr_Practical_P06_s10272641/issues"
+  },
+  "homepage": "https://github.com/Echgnux/BED2026Apr_Practical_P06_s10272641#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
