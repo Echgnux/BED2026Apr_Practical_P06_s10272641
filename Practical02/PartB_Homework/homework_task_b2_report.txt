@@ -1,0 +1,14 @@
+Task 1:
+1. app.use(express.json()): the middleware of express.js that allows the program to parse incoming requests into the JSON format
+2. req.body: the parsed data from the body of an incoming HTTP request i.e. the raw json object of the user data
+3. req.query: holds the query string parameters from the URL - the Key Value pair that comes after the ? in the URL
+4. req.params.id: captures a dynamic segment from the URL, defined using :id in the route 
+
+Using the different HttP methods in my API is necessary as it allows me to create, read, update and delete data from the local session storage.
+Each HTTP method corresponds to a portion of the CRUD operations: POST/CREATE, GET/READ, PUT/UPDATE, DELETE/DELETE.
+
+200 OK: Request successful
+201 Created: Request successful and new resource created
+400 Bad Request: User error in the request, making it unsuccessful
+404 Not Found: User error in the request, specified object cannot be found, making it unsuccessful
+500 Internal Server Error: Server error, an error was found on the server side, making the request unsuccessful
