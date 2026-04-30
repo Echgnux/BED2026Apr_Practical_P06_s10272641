@@ -1,0 +1,6 @@
+I learnt that REST APIs can be used to send requests to retrieve data from the backend. 
+I understood that each of the HTTP methods, GET, POST, PUT, DELETE corresponds to a certain function in CRUD, CREATE, READ, UPLOAD, DELETE.
+I felt that understanding the syntax and translating it into its actual function was a little challenging.
+
+POST should be used for creating resources since it corresponds to CREATE in CRUD while PUT should be used for updating since in corresponds to UPDATE in CRUD.
+The 404 status code should be returned, indicating that the client made an error in the request.
