@@ -1,0 +1,7 @@
+It is easy to read and understand what's happening in each route handler.
+I can grasp how GET and POST map to the READ and CREATE functions in CRUD.
+Each API route handler executes a database query and allows the user to fetch, or upload data as requested.
+
+I think the configuration portions? If an error arises, the most likely cause is a mistake in the configuration data.
+
+I did not face any challenges.
