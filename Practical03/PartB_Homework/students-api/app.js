@@ -15,7 +15,7 @@ app.get("/students", async (req, res) => {
   let connection; // Declare connection outside try for finally block
   try {
     connection = await sql.connect(dbConfig); // Get the database connection
-    const sqlQuery = `SELECT id, name, address FROM Students`; // Select specific columns
+    const sqlQuery = `SELECT student_id, name, address FROM Students`; // Select specific columns
     const request = connection.request();
     const result = await request.query(sqlQuery);
     res.json(result.recordset); // Send the result as JSON
@@ -34,7 +34,7 @@ app.get("/students", async (req, res) => {
 });
 
 // GET book by ID
-app.get("/student/:student_id", async (req, res) => {
+app.get("/students/:student_id", async (req, res) => {
   const studentId = parseInt(req.params.student_id);
   if (isNaN(studentId)) {
     return res.status(400).send("Invalid student ID");
@@ -115,12 +115,12 @@ app.post("/students", async (req, res) => {
 
 // PUT update an existing book
 app.put("/students/:student_id", async (req, res) => {
-  const studentId = parseInt(req.params.id);
+  const studentId = parseInt(req.params.student_id);
   if (isNaN(studentId)) {
     return res.status(400).send("Invalid student ID");
   }
 
-  const updatedStudentId = req.body; // Get updated book data from request body
+  const updatedStudentData = req.body; // Get updated book data from request body
 
   // **WARNING:** No validation is performed here. Invalid data may cause database errors.
 
@@ -151,7 +151,7 @@ app.put("/students/:student_id", async (req, res) => {
 
     res.json(updatedStudentResult.recordset[0]); // Send the updated book data as JSON
   } catch (error) {
-    console.error(`Error in PUT /students/${student_id}:`, error);
+    console.error(`Error in PUT /students/${studentId}:`, error);
     res.status(500).send("Error updating student");
   } finally {
     if (connection) {
@@ -168,7 +168,7 @@ app.put("/students/:student_id", async (req, res) => {
 
 // DELETE a book
 app.delete("/students/:student_id", async (req, res) => {
-  const studentId = parseInt(req.params.id);
+  const studentId = parseInt(req.params.student_id);
   if (isNaN(studentId)) {
     return res.status(400).send("Invalid student ID");
   }
@@ -188,7 +188,7 @@ app.delete("/students/:student_id", async (req, res) => {
 
     res.status(204).send(); // Send 204 No Content for a successful deletion
   } catch (error) {
-    console.error(`Error in DELETE /students/${student_id}:`, error);
+    console.error(`Error in DELETE /students/${studentId}:`, error);
     res.status(500).send("Error deleting student");
   } finally {
     if (connection) {
