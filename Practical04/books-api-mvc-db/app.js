@@ -25,6 +25,8 @@ app.get("/books", bookController.getAllBooks);
 app.get("/books/:id", validateBookId, bookController.getBookById); // Use validateBookId middleware
 app.post("/books", validateBook, bookController.createBook); // Use validateBook middleware
 // Add routes for PUT/DELETE if implemented, applying appropriate middleware
+app.put("/books/:id", validateBookId, validateBook, bookController.updateBook);
+app.delete("/books/:id", validateBookId, bookController.deleteBook);
 
 // Start server
 app.listen(port, () => {
