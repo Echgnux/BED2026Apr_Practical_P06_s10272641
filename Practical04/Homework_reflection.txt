@@ -1,14 +1,48 @@
 Task 1: Reflection on Refactoring
 Reflect on the process of refactoring the API code into the MVC structure by answering the following questions:
 
-What were the main changes you made to refactor the code into MVC architecture? Describe how you moved code between files and folders.
-What challenges did you face during the refactoring process?
-How does the MVC structure change the way you think about adding new features or modifying existing ones compared to the previous non-MVC structure?
-In what specific ways do you think the MVC version is more organized or easier to understand and maintain than the previous version where all logic was in app.js?
-Explain how separating concerns (putting database logic in the Model and request handling in the Controller) makes the code better from a development perspective.
+1. What were the main changes you made to refactor the code into MVC architecture? Describe how you moved code between files and folders.
+    The main changes I made to refactor the code into MVC architecture were separating the original code into each section of the MVC architecture.
+    I then pasted and modified each section of code into each respective folder for the MVC architecture.
+
+2. What challenges did you face during the refactoring process?
+    I found it difficult to decipher which portions of the code belonged to which segments of the MVC architecture because I was not fully aware of the functions of some code.
+
+3. How does the MVC structure change the way you think about adding new features or modifying existing ones compared to the previous non-MVC structure?
+    The MVC structure provides fresh insight in the way that I approach adding new features. For example, when thinking about features related to the logic of the code, I will think about how it can complement existing 
+    code within the model folder. Whereas, previously, I may be swamped with worries about how it may affect and change the way the lines of code work altogether. 
+
+4. In what specific ways do you think the MVC version is more organized or easier to understand and maintain than the previous version where all logic was in app.js?
+    I think the MVC version is more organized, easier to understand and maintain because the programmer will not need to constantly reread and recategorize each
+    segment of code when making updates and changes. Also, this completely revolutionizes team collaboration by providing greater clarity, ultimately resulting in more 
+    effective working code.
+
+5. Explain how separating concerns (putting database logic in the Model and request handling in the Controller) makes the code better from a development perspective.
+    Seperation of code makes the code better in multiple ways. First, it ensures that code in each part of the architecture will not affect others, resulting in less debugging time.
+    Secondly, it produces more efficient team collaboration on a software project by reducing ambiguity.
+
 Task 2: Reflecting on Robustness & Security
 Reflect on the impact of validation, error handling, and parameterized queries by answering the following questions:
 
-How does implementing input validation middleware make the API more reliable and user-friendly? Provide an example of invalid input that your validation would now handle.
-Explain in your own words how parameterized queries prevent SQL injection attacks. Why is this approach fundamentally more secure than building SQL query strings by concatenating variable data?
-Consider a potential security risk for an API (other than SQL injection, e.g., brute-force attacks, exposing sensitive data in responses). How might robust error handling (like not showing detailed error messages to the client) help mitigate such a risk?
+1. How does implementing input validation middleware make the API more reliable and user-friendly? Provide an example of invalid input that your validation would now handle.
+    By rejecting invalid data and preventing the database from receiving inaccurate information, input validation middleware enhances the reliability and user-friendliness of the API.
+    Furthermore, it not only averts unexpected failures or corrupted data but also improves user experience by providing a clear 400 response instead of an ambiguous 500 server error.
+    For example, if one were to submit the following POST request body without validation:
+
+    json{ "title": "author": 12345 }
+    it would either fail silently or generate a confusing database error upon reaching the database. The validateBook middleware identifies this issue immediately and returns a message such as:
+    "Title cannot be empty, Author must be a string" At this point, the user would clearly understand what needs to be corrected.
+
+2. Explain in your own words how parameterized queries prevent SQL injection attacks. Why is this approach fundamentally more secure than building SQL query strings by concatenating variable data?
+    Parameterized queries prevent SQL injection attacks by storing user inputs as variables. This approach is fundamentally more secure than buidling SQL query strings by concatenating variable data
+    as it ensures that the user input remains treated by the database engine as a value, thus preventing malicious SQL scripts from being executed.
+
+3. Consider a potential security risk for an API (other than SQL injection, e.g., brute-force attacks, exposing sensitive data in responses). How might robust error handling (like not showing detailed error messages to the client) help mitigate such a risk?
+
+One prevalent risk involves information leakage — unintentionally revealing internal information through error messages, which can assist attackers in understanding your system's structure. 
+For instance, if your API were to disclose raw database errors such as: "Login failed for user 'admin' on database 'bed_db' at server 'localhost:1433'"
+an attacker would gain knowledge of your database server address, the database name, and the existence of an admin user — all of which are critical details for orchestrating further attacks, such as brute-forcing credentials.
+By providing only generic messages to the client ({ error: "Internal server error" }) and retaining the complete details on the server side, 
+you ensure that no valuable information is disclosed to an attacker. This approach also complements brute-force protection 
+— a generic "Invalid credentials" message (as opposed to distinguishing between "User not found" and "Wrong password") 
+prevents attackers from determining whether a username is valid.
