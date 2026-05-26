@@ -91,15 +91,60 @@ if (bookIdToEdit) {
 editBookForm.addEventListener("submit", async (event) => {
   event.preventDefault(); // Prevent the default browser form submission
 
-  console.log("Edit form submitted (PUT logic to be implemented)");
-  alert("Update logic needs to be implemented!"); // Placeholder alert
-
   // TODO: Collect updated data from form fields (editTitleInput.value, editAuthorInput.value)
   // Collect data from the form inputs
   const titleInput = editTitleInput.value;
   const authorInput = editAuthorInput.value;
   // TODO: Get the book ID from the hidden input (bookIdInput.value)
+  const editIdInput = bookIdInput.value;
+  const editedBookData = {
+    title: titleInput,
+    author: authorInput,
+  };
   // TODO: Implement the fetch PUT request to the API endpoint /books/:id
+  try {
+    // Make a PUT request to your API endpoint
+    const response = await fetch(`${apiBaseUrl}/books/${editIdInput}`, {
+      method: "PUT", // Specify the HTTP method
+      headers: {
+        "Content-Type": "application/json", // Tell the API we are sending JSON
+      },
+      body: JSON.stringify(editedBookData), // Send the data as a JSON string in the request body
+    });
+
+    // Check for API response status (e.g., 201 Created, 400 Bad Request, 500 Internal Server Error)
+    const responseBody = response.headers
+      .get("content-type")
+      ?.includes("application/json")
+      ? await response.json()
+      : { message: response.statusText };
+
+    if (response.status === 200) {
+      messageDiv.textContent = `Book updated successfully! ID: ${responseBody.id}`;
+      messageDiv.style.color = "green";
+      window.location.href = `index.html`;
+      console.log("Updated Book:", responseBody);
+    } else if (response.status === 400) {
+      // Handle validation errors from the API (from Practical 04 validation middleware)
+      messageDiv.textContent = `Validation Error: ${responseBody.message}`;
+      messageDiv.style.color = "red";
+      console.error("Validation Error:", responseBody);
+    } else if (response.status === 404) {
+      // Handling of 404 website not found error
+      messageDiv.textContent = `Website Not Found: ${responseBody.message}`;
+      messageDiv.style.color = "red";
+      console.error("Website Not Found Error:", responseBody);
+    } else {
+      // Handle other potential API errors (e.g., 500 from error handling middleware)
+      throw new Error(
+        `API error! status: ${response.status}, message: ${responseBody.message}`,
+      );
+    }
+  } catch (error) {
+    console.error("Error Updating book:", error);
+    messageDiv.textContent = `Failed to update book: ${error.message}`;
+    messageDiv.style.color = "red";
+  }
   // TODO: Include the updated data in the request body (as JSON string)
   // TODO: Set the 'Content-Type': 'application/json' header
   // TODO: Handle the API response (check status 200 for success, 400 for validation, 404 if book not found, 500 for server error)
