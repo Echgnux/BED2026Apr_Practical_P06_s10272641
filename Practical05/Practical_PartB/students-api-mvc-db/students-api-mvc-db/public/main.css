@@ -1,0 +1,320 @@
+/* === RESET & BASE === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap");
+
+:root {
+  --bg: #f5f2ee;
+  --surface: #ffffff;
+  --border: #e0d9d0;
+  --accent: #2d6a4f;
+  --accent-lt: #d8f3dc;
+  --danger: #c0392b;
+  --danger-lt: #fdecea;
+  --text: #1a1a1a;
+  --muted: #7a7268;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 6px 32px rgba(0, 0, 0, 0.11);
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* === NAV === */
+nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  height: 58px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+
+nav .brand {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.2rem;
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+nav a:hover,
+nav a.active {
+  background: var(--accent-lt);
+  color: var(--accent);
+}
+
+/* === PAGE WRAPPER === */
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* === PAGE HEADER === */
+.page-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.page-header h1 {
+  font-family: "DM Serif Display", serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+/* === CARD === */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  margin-bottom: 1.2rem;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* === STUDENT LIST ITEM === */
+.student-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+  transition: box-shadow 0.15s;
+}
+
+.student-item:hover {
+  box-shadow: var(--shadow);
+}
+
+.student-info .student-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.student-info .student-address {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.student-info .student-id {
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 7px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.student-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* === BUTTONS === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn-primary:hover {
+  background: #245c42;
+  border-color: #245c42;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.btn-outline:hover {
+  background: var(--accent-lt);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--danger);
+}
+.btn-danger:hover {
+  background: var(--danger-lt);
+}
+
+.btn-sm {
+  padding: 5px 11px;
+  font-size: 0.8rem;
+}
+
+/* === FORM === */
+.form-group {
+  margin-bottom: 1.4rem;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-family: "DM Sans", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.12);
+  background: #fff;
+}
+
+/* === FEEDBACK MESSAGES === */
+.message {
+  padding: 12px 16px;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+  display: none;
+}
+
+.message.success {
+  background: var(--accent-lt);
+  color: var(--accent);
+  border: 1px solid #b7e4c7;
+}
+
+.message.error {
+  background: var(--danger-lt);
+  color: var(--danger);
+  border: 1px solid #f5c6cb;
+}
+
+.message.show {
+  display: block;
+}
+
+/* === EMPTY STATE === */
+.empty-state {
+  text-align: center;
+  padding: 3.5rem 1rem;
+  color: var(--muted);
+}
+
+.empty-state p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* === LOADING === */
+.loading {
+  text-align: center;
+  padding: 2.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .page-header {
+    flex-direction: column;
+  }
+  .student-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .student-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  nav {
+    gap: 1rem;
+  }
+}
