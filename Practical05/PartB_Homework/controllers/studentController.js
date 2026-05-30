@@ -67,7 +67,7 @@ async function deleteStudent(req, res) {
     }
 
     res
-      .status(200)
+      .status(204)
       .json({ message: `Student with ID ${id} has been successfully deleted` });
   } catch (error) {
     console.error("Controller error:", error);
