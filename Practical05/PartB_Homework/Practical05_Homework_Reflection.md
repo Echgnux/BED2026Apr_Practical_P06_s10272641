@@ -1,22 +1,16 @@
-Task 2: Reflection and Review
-Reflect on your learning journey from Practical 03 to Practical 05, focusing on the evolution of your API project structure, robustness, and the separation of concerns.
+Reflective Report on changes made from Practical 3 to 5.
 
-Separation of Concerns:
+Table of Contents:
 
-In your own words, explain the distinct responsibilities of the Model, View (the external frontend), and Controller in your final project structure.
-
-How does having a separate frontend View (Practical 05) simplify the responsibilities of your backend API?
-
-Robustness and Security:
-
-Consider the journey from a simple API (Practical 03) to a more robust one (Practical 04) and a full-stack application (Practical 05). At which stage do you think it became easier to identify and fix bugs related to data handling or API responses? Why?
-Challenges and Problem Solving:
-
-What was the most challenging aspect for you across Practical 03, 04, and 05? Describe the problem and how you approached solving it.
-
-Thinking critically, if you had to add a new feature (e.g., adding a "genre" field to books, or implementing user authentication), how would the current MVC structure with a separate View layer help you approach this task in a more organized and efficient way compared to the initial Practical 03 structure?
-
-Experiential Learning: How did the hands-on coding and refactoring in these practicals help you understand the concepts of MVC, validation, error handling, and parameterized queries compared to just reading about them?
-
-Format:
-Submit your answers to the reflection and exploration tasks as a short written report or document (e.g., Practical05_Homework_Reflection.md). Ensure your answers are clear, well-explained, and directly address the questions asked.
+1. Seperation of Concerns
+   The MVC architecture cleanly separates the concerns for this full-stack web application. The model handles the database operations, data validation, and domain rules.
+   The View (external frontend) acts as a standalone app that renders the User Interface and handles User interaction. It communicates with the backend through API calls and handles the user's requests.
+   The Controller receieves HTTP requests, calls the Model and returns JSON responses. It acts as the mediator between web protocol and business logic.
+   Having a separate frontend View simplifies the responsibilities of my backend API by making the backend purely data-oriented. This allows the API to be simpler, easier to test and reusable (the same endpoints can serve different apps, projects, frontends with minimal changes).
+2. Robustness and Security
+   I think that it was easiest to test identify and fix bugs related to data handling or API responses once the project reached Practical 5. At this stage, it became much simpler to test and debug since the browser's DevTools revealed the errors concretely.
+3. Challenges and Problem Solving
+   The most challenging aspect for me across Practical 3, 4 and 5 were trying to understand the syntax and learn what each line of code does. Although having taken frontend in the previous semester, I was admittedly still weak and rusty in javaScript. When it came to trying to understand how each line fulfilled it's responsibility and how it corresponded to each portion of the MVC architecture, I did get confused often. I stayed patient with the process of relearning the syntax and learning new functions and eventually managed to get a better grasp on why each line of code was necessary.
+   Since I have this new MVC structure, I would be better equipped to write out the business logic/database interactions in the Model, come up with the frontend in the View, and ensure that the Controller processed HTTP requests. Also, debugging would be much efficient as I could use browser tools to find out where my code went astray and uncover what I need to fix.
+4. Experiential Learning
+   I certainly have a better understanding and appreciation of why exactly MVC and sepeartion of concerns are so vital in full-stack projects. Because I had to manually debug various lines of errors, I now better understand how to approach the developing of full-stack projects. While reading was definitely helpful for getting a quick grasp on the concepts, hands-on coding and refactoring challenged what I thought I knew and revealed the gaps in my knowledge and understanding. Therefore, allowing me to repiece my thought processes and refine my approach to web development.
