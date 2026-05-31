@@ -13,8 +13,8 @@ async function createUser(user) {
     request.input("email", user.email);
     const result = await request.query(query);
 
-    const newBookId = result.recordset[0].id;
-    return await getBookById(newBookId);
+    const newUserId = result.recordset[0].id;
+    return await getUserById(newUserId); // ← FIXED: was getBookById
   } catch (error) {
     console.error("Database error:", error);
     throw error;
@@ -29,12 +29,12 @@ async function createUser(user) {
   }
 }
 
-// Get all Users
+// Get all users
 async function getAllUsers() {
   let connection;
   try {
     connection = await sql.connect(dbConfig);
-    const query = "SELECT id, username, email FROM Books";
+    const query = "SELECT id, username, email FROM Users"; // ← FIXED: was FROM Books
     const result = await connection.request().query(query);
     return result.recordset;
   } catch (error) {
@@ -51,7 +51,7 @@ async function getAllUsers() {
   }
 }
 
-// Get User by ID
+// Get user by ID
 async function getUserById(id) {
   let connection;
   try {
@@ -60,11 +60,9 @@ async function getUserById(id) {
     const request = connection.request();
     request.input("id", id);
     const result = await request.query(query);
-
     if (result.recordset.length === 0) {
-      return null; // Book not found
+      return null;
     }
-
     return result.recordset[0];
   } catch (error) {
     console.error("Database error:", error);
@@ -80,7 +78,7 @@ async function getUserById(id) {
   }
 }
 
-// Update useer by ID
+// Update user by ID
 async function updateUser(id, updatedUser) {
   let connection;
   try {
@@ -94,8 +92,7 @@ async function updateUser(id, updatedUser) {
     request.input("username", updatedUser.username);
     request.input("email", updatedUser.email);
     await request.query(query);
-
-    return await getUserById(id); // Return the updated user
+    return await getUserById(id);
   } catch (error) {
     console.error("Database error:", error);
     throw error;
@@ -119,8 +116,7 @@ async function deleteUser(id) {
     const request = connection.request();
     request.input("id", id);
     const result = await request.query(query);
-
-    return result.rowsAffected[0] > 0; // Returns true if a row was deleted
+    return result.rowsAffected[0] > 0;
   } catch (error) {
     console.error("Database error:", error);
     throw error;
@@ -135,10 +131,88 @@ async function deleteUser(id) {
   }
 }
 
+// Search users by username or email  ← ADDED (Task 6)
+async function searchUsers(searchTerm) {
+  let connection;
+  try {
+    connection = await sql.connect(dbConfig);
+    const query = `
+      SELECT * FROM Users
+      WHERE username LIKE '%' + @searchTerm + '%'
+         OR email LIKE '%' + @searchTerm + '%'
+    `;
+    const request = connection.request();
+    request.input("searchTerm", sql.NVarChar, searchTerm);
+    const result = await request.query(query);
+    return result.recordset;
+  } catch (error) {
+    console.error("Database error in searchUsers:", error);
+    throw error;
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error("Error closing connection after searchUsers:", err);
+      }
+    }
+  }
+}
+
+// Get users with their books  ← ADDED (Task 7)
+async function getUsersWithBooks() {
+  let connection;
+  try {
+    connection = await sql.connect(dbConfig);
+    const query = `
+      SELECT u.id AS user_id, u.username, u.email, b.id AS book_id, b.title, b.author
+      FROM Users u
+      LEFT JOIN UserBooks ub ON ub.user_id = u.id
+      LEFT JOIN Books b ON ub.book_id = b.id
+      ORDER BY u.username
+    `;
+    const result = await connection.request().query(query);
+
+    const usersWithBooks = {};
+    for (const row of result.recordset) {
+      const userId = row.user_id;
+      if (!usersWithBooks[userId]) {
+        usersWithBooks[userId] = {
+          id: userId,
+          username: row.username,
+          email: row.email,
+          books: [],
+        };
+      }
+      if (row.book_id !== null) {
+        usersWithBooks[userId].books.push({
+          id: row.book_id,
+          title: row.title,
+          author: row.author,
+        });
+      }
+    }
+    return Object.values(usersWithBooks);
+  } catch (error) {
+    console.error("Database error in getUsersWithBooks:", error);
+    throw error;
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error("Error closing connection after getUsersWithBooks:", err);
+      }
+    }
+  }
+}
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
   updateUser,
   deleteUser,
+  searchUsers, // ← ADDED
+  getUsersWithBooks, // ← ADDED
 };
