@@ -1,0 +1,3362 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BED CT — Complete Mega Cheatsheet Vol.2</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #080a0f;
+        --s1: #0e1119;
+        --s2: #141720;
+        --s3: #1a1f2e;
+        --br: #222840;
+        --br2: #2d3450;
+        --c1: #00e5ff;
+        --c2: #bf5af2;
+        --c3: #30d158;
+        --c4: #ff6b35;
+        --c5: #ffd60a;
+        --c6: #ff453a;
+        --c7: #64d2ff;
+        --tx: #dde3f0;
+        --mt: #7986a8;
+        --cb: #06080e;
+        --kw: #ff79c6;
+        --st: #f1fa8c;
+        --cm: #5c6b8a;
+        --fn: #50fa7b;
+        --nm: #bd93f9;
+        --vr: #8be9fd;
+        --op: #ff79c6;
+        --tg: #ff5555;
+      }
+      body {
+        background: var(--bg);
+        color: var(--tx);
+        font-family: "Inter", sans-serif;
+        font-size: 12.5px;
+        line-height: 1.55;
+      }
+      a {
+        color: var(--c1);
+        text-decoration: none;
+      }
+
+      /* HERO */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #080a0f 0%,
+          #0d0a1e 35%,
+          #0a150a 70%,
+          #1a0808 100%
+        );
+        border-bottom: 1px solid var(--br);
+        padding: 32px 36px 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 229, 255, 0.06) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero h1 {
+        font-size: 26px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p {
+        color: var(--mt);
+        font-size: 11.5px;
+        margin-top: 5px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 8px;
+        margin-top: 14px;
+      }
+      .hero-tag {
+        background: var(--s2);
+        border: 1px solid var(--br);
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 11px;
+      }
+      .hero-tag b {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 2px;
+      }
+      .hero-tag.t1 b {
+        color: var(--c1);
+      }
+      .hero-tag.t2 b {
+        color: var(--c2);
+      }
+      .hero-tag.t3 b {
+        color: var(--c3);
+      }
+      .hero-tag.t4 b {
+        color: var(--c4);
+      }
+      .hero-tag.t5 b {
+        color: var(--c5);
+      }
+      .hero-tag.t6 b {
+        color: var(--c6);
+      }
+
+      /* NAV */
+      .toc {
+        background: var(--s1);
+        border-bottom: 1px solid var(--br);
+        padding: 10px 36px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 16px;
+        font-size: 11px;
+      }
+      .toc a {
+        color: var(--mt);
+        transition: color 0.2s;
+      }
+      .toc a:hover {
+        color: var(--c1);
+      }
+
+      /* LAYOUT */
+      .wrap {
+        max-width: 1800px;
+        margin: 0 auto;
+        padding: 20px 20px 40px;
+      }
+      .g2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .g3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+      }
+      .g4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .ga {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        gap: 14px;
+      }
+
+      /* SECTION HEADER */
+      .sh {
+        border-radius: 6px;
+        padding: 8px 14px;
+        margin: 24px 0 12px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .sh.c1 {
+        background: rgba(0, 229, 255, 0.07);
+        border-left: 3px solid var(--c1);
+        color: var(--c1);
+      }
+      .sh.c2 {
+        background: rgba(191, 90, 242, 0.07);
+        border-left: 3px solid var(--c2);
+        color: var(--c2);
+      }
+      .sh.c3 {
+        background: rgba(48, 209, 88, 0.07);
+        border-left: 3px solid var(--c3);
+        color: var(--c3);
+      }
+      .sh.c4 {
+        background: rgba(255, 107, 53, 0.07);
+        border-left: 3px solid var(--c4);
+        color: var(--c4);
+      }
+      .sh.c5 {
+        background: rgba(255, 214, 10, 0.07);
+        border-left: 3px solid var(--c5);
+        color: var(--c5);
+      }
+      .sh.c6 {
+        background: rgba(255, 69, 58, 0.07);
+        border-left: 3px solid var(--c6);
+        color: var(--c6);
+      }
+      .sh.c7 {
+        background: rgba(100, 210, 255, 0.07);
+        border-left: 3px solid var(--c7);
+        color: var(--c7);
+      }
+
+      /* CARD */
+      .card {
+        background: var(--s1);
+        border: 1px solid var(--br);
+        border-radius: 8px;
+        padding: 13px 15px;
+        margin-bottom: 12px;
+      }
+      .card h3 {
+        font-size: 11.5px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        letter-spacing: 0.3px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .card h3.c1 {
+        color: var(--c1);
+      }
+      .card h3.c2 {
+        color: var(--c2);
+      }
+      .card h3.c3 {
+        color: var(--c3);
+      }
+      .card h3.c4 {
+        color: var(--c4);
+      }
+      .card h3.c5 {
+        color: var(--c5);
+      }
+      .card h3.c6 {
+        color: var(--c6);
+      }
+      .card p,
+      .card li {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+      .card ul {
+        padding-left: 16px;
+      }
+      .card li {
+        margin-bottom: 3px;
+      }
+
+      /* CODE */
+      pre {
+        background: var(--cb);
+        border: 1px solid var(--br);
+        border-radius: 6px;
+        padding: 11px 13px;
+        overflow-x: auto;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        line-height: 1.7;
+        margin: 7px 0;
+        white-space: pre;
+      }
+      .ic {
+        background: var(--cb);
+        border: 1px solid var(--br);
+        border-radius: 3px;
+        padding: 1px 5px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10.5px;
+        color: var(--c1);
+      }
+      .kw {
+        color: var(--kw);
+        font-weight: 700;
+      }
+      .st {
+        color: var(--st);
+      }
+      .cm {
+        color: var(--cm);
+        font-style: italic;
+      }
+      .fn {
+        color: var(--fn);
+      }
+      .nm {
+        color: var(--nm);
+      }
+      .vr {
+        color: var(--vr);
+      }
+      .tg {
+        color: var(--tg);
+      }
+      .prop {
+        color: var(--vr);
+      }
+      .op {
+        color: var(--kw);
+      }
+
+      /* HIGHLIGHT */
+      .hl {
+        border-radius: 5px;
+        padding: 8px 12px;
+        margin: 7px 0;
+        font-size: 11.5px;
+      }
+      .hl.b {
+        background: rgba(0, 229, 255, 0.07);
+        border-left: 3px solid var(--c1);
+      }
+      .hl.p {
+        background: rgba(191, 90, 242, 0.07);
+        border-left: 3px solid var(--c2);
+      }
+      .hl.g {
+        background: rgba(48, 209, 88, 0.07);
+        border-left: 3px solid var(--c3);
+      }
+      .hl.o {
+        background: rgba(255, 107, 53, 0.07);
+        border-left: 3px solid var(--c4);
+      }
+      .hl.y {
+        background: rgba(255, 214, 10, 0.07);
+        border-left: 3px solid var(--c5);
+      }
+      .hl.r {
+        background: rgba(255, 69, 58, 0.07);
+        border-left: 3px solid var(--c6);
+      }
+
+      /* TABLE */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 11.5px;
+      }
+      th {
+        background: var(--s3);
+        color: var(--c1);
+        padding: 7px 10px;
+        text-align: left;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--br);
+      }
+      td {
+        padding: 6px 10px;
+        border-bottom: 1px solid rgba(34, 40, 64, 0.5);
+        vertical-align: top;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr:hover td {
+        background: rgba(255, 255, 255, 0.015);
+      }
+
+      /* BADGE */
+      .badge {
+        display: inline-block;
+        padding: 2px 7px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 0.5px;
+      }
+      .bg {
+        background: rgba(48, 209, 88, 0.2);
+        color: var(--c3);
+      }
+      .bp {
+        background: rgba(0, 229, 255, 0.2);
+        color: var(--c1);
+      }
+      .by {
+        background: rgba(255, 214, 10, 0.2);
+        color: var(--c5);
+      }
+      .br_ {
+        background: rgba(255, 69, 58, 0.2);
+        color: var(--c6);
+      }
+      .bo {
+        background: rgba(255, 107, 53, 0.2);
+        color: var(--c4);
+      }
+      .bpu {
+        background: rgba(191, 90, 242, 0.2);
+        color: var(--c2);
+      }
+
+      /* FLOW */
+      .flow {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-wrap: wrap;
+        padding: 8px 0;
+        font-size: 11px;
+      }
+      .fb {
+        background: var(--s3);
+        border: 1px solid var(--br);
+        border-radius: 5px;
+        padding: 5px 11px;
+        font-weight: 600;
+      }
+      .fb.c1 {
+        border-color: var(--c1);
+        color: var(--c1);
+      }
+      .fb.c2 {
+        border-color: var(--c2);
+        color: var(--c2);
+      }
+      .fb.c3 {
+        border-color: var(--c3);
+        color: var(--c3);
+      }
+      .fb.c4 {
+        border-color: var(--c4);
+        color: var(--c4);
+      }
+      .fa {
+        color: var(--mt);
+        font-size: 14px;
+      }
+
+      /* Q&A CARDS */
+      .qa {
+        background: var(--s1);
+        border: 1px solid var(--br);
+        border-radius: 8px;
+        margin-bottom: 10px;
+        overflow: hidden;
+      }
+      .qa-q {
+        background: var(--s3);
+        padding: 10px 14px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--c5);
+        border-bottom: 1px solid var(--br);
+      }
+      .qa-a {
+        padding: 10px 14px;
+        font-size: 12px;
+        line-height: 1.65;
+      }
+      .qa-a code {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        background: var(--cb);
+        padding: 1px 5px;
+        border-radius: 3px;
+        color: var(--c1);
+      }
+
+      /* PILL */
+      .pill {
+        display: inline-block;
+        padding: 1px 8px;
+        border-radius: 12px;
+        font-size: 10px;
+        font-weight: 700;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .p2 {
+        background: rgba(48, 209, 88, 0.2);
+        color: var(--c3);
+      }
+      .p201 {
+        background: rgba(48, 209, 88, 0.15);
+        color: #4ade80;
+      }
+      .p204 {
+        background: rgba(48, 209, 88, 0.1);
+        color: #86efac;
+      }
+      .p4 {
+        background: rgba(255, 214, 10, 0.2);
+        color: var(--c5);
+      }
+      .p401 {
+        background: rgba(255, 69, 58, 0.15);
+        color: #fca5a5;
+      }
+      .p403 {
+        background: rgba(255, 69, 58, 0.2);
+        color: var(--c6);
+      }
+      .p404 {
+        background: rgba(255, 107, 53, 0.2);
+        color: var(--c4);
+      }
+      .p5 {
+        background: rgba(255, 69, 58, 0.25);
+        color: var(--c6);
+      }
+
+      hr {
+        border: none;
+        border-top: 1px solid var(--br);
+        margin: 20px 0;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--br2);
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <div class="hero">
+      <h1>BED Common Test — Complete Mega Cheatsheet Vol.2</h1>
+      <p>
+        Every topic from Practicals 1–6 · All question types · Model answers
+        included · Zero gaps
+      </p>
+      <div class="hero-grid">
+        <div class="hero-tag t1">
+          <b>P01 — Express Basics</b>require, app, routes, listen, route
+          handlers, res.send/json
+        </div>
+        <div class="hero-tag t2">
+          <b>P02 — REST + In-Memory CRUD</b>foods-api, req.body/query/params,
+          Date.now(), array ops
+        </div>
+        <div class="hero-tag t3">
+          <b>P03 — MSSQL Integration</b>dbConfig, sql.connect, request, input,
+          query, recordset, SIGINT
+        </div>
+        <div class="hero-tag t4">
+          <b>P04 — MVC + Joi Validation</b>Model/Controller/Middleware, dotenv,
+          validateBook, abortEarly
+        </div>
+        <div class="hero-tag t5">
+          <b>P05 — Frontend View Layer</b>express.static, fetch API,
+          JSON.stringify, event.preventDefault
+        </div>
+        <div class="hero-tag t6">
+          <b>P06 — Users + Relationships</b>M:N schema, LEFT JOIN,
+          getUsersWithBooks, searchUsers, LIKE
+        </div>
+      </div>
+    </div>
+
+    <!-- TOC -->
+    <div class="toc">
+      <a href="#s1">1·Express Basics</a>
+      <a href="#s2">2·REST Concepts</a>
+      <a href="#s3">3·In-Memory CRUD (P02)</a>
+      <a href="#s4">4·MSSQL Setup (P03)</a>
+      <a href="#s5">5·MVC Architecture (P04)</a>
+      <a href="#s6">6·app.js Complete</a>
+      <a href="#s7">7·dbConfig + dotenv</a>
+      <a href="#s8">8·bookModel.js</a>
+      <a href="#s9">9·bookController.js</a>
+      <a href="#s10">10·Joi Validation</a>
+      <a href="#s11">11·Frontend (P05)</a>
+      <a href="#s12">12·userModel.js</a>
+      <a href="#s13">13·userController.js</a>
+      <a href="#s14">14·M:N Relationships</a>
+      <a href="#s15">15·HTTP Deep Dive</a>
+      <a href="#s16">16·SQL Quick Ref</a>
+      <a href="#s17">17·Q&amp;A Bank</a>
+      <a href="#s18">18·Exam Templates</a>
+    </div>
+
+    <div class="wrap">
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 1: EXPRESS BASICS (P01) -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s1" class="sh c1">🚀 1 · EXPRESS BASICS — Practical 01</div>
+      <div class="g2">
+        <div>
+          <div class="card">
+            <h3 class="c1">
+              Setting up a Node.js + Express project from scratch
+            </h3>
+            <pre><span class="cm"># Step 1: init project (creates package.json)</span>
+npm init -y
+
+<span class="cm"># Step 2: install express</span>
+npm install express
+
+<span class="cm"># Step 3: create app.js / index.js, then run</span>
+node app.js</pre>
+            <div class="hl b">
+              <b>npm init -y</b> — the <span class="ic">-y</span> flag
+              auto-accepts all defaults so you don't have to answer prompts.
+              Creates <span class="ic">package.json</span> which tracks project
+              name, version, entry point, and dependencies.
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="c1">Minimal Express server — every line explained</h3>
+            <pre><span class="kw">const</span> <span class="vr">express</span> = <span class="fn">require</span>(<span class="st">"express"</span>); <span class="cm">// load Express module from node_modules</span>
+<span class="kw">const</span> <span class="vr">app</span>     = <span class="fn">express</span>();         <span class="cm">// create Express application instance</span>
+<span class="kw">const</span> <span class="vr">PORT</span>    = <span class="nm">3000</span>;              <span class="cm">// port number (or use process.env.PORT)</span>
+
+<span class="cm">// Route: method + path + handler function</span>
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/"</span>, (<span class="vr">req</span>, <span class="vr">res</span>) => {
+  <span class="vr">res</span>.<span class="fn">send</span>(<span class="st">"Hello from Express!"</span>); <span class="cm">// sends plain text, status 200</span>
+});
+
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/about"</span>, (<span class="vr">req</span>, <span class="vr">res</span>) => {
+  <span class="vr">res</span>.<span class="fn">send</span>(<span class="st">"About Page"</span>);
+});
+
+<span class="cm">// app.listen MUST come AFTER all route definitions</span>
+<span class="vr">app</span>.<span class="fn">listen</span>(<span class="vr">PORT</span>, () => {
+  <span class="vr">console</span>.<span class="fn">log</span>(<span class="st">`Server running on http://localhost:<span class="vr">${PORT}</span>`</span>);
+});
+<span class="cm">// listen() → starts HTTP server, binds to PORT
+// callback fires once server is ready to accept connections</span></pre>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h3 class="c1">Key concepts from P01</h3>
+            <table>
+              <tr>
+                <th>Concept</th>
+                <th>What it is / Why it matters</th>
+              </tr>
+              <tr>
+                <td><span class="ic">require("express")</span></td>
+                <td>
+                  CommonJS module import. Loads Express from
+                  <span class="ic">node_modules/</span> into the variable.
+                  Without this, you can't use any Express features.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ic">express()</span></td>
+                <td>
+                  Creates the app instance. All routes and middleware attach to
+                  this object via <span class="ic">app.get()</span>,
+                  <span class="ic">app.use()</span> etc.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ic">app.get(path, handler)</span></td>
+                <td>
+                  Defines a GET route. When a GET request hits
+                  <span class="ic">path</span>, Express calls
+                  <span class="ic">handler(req, res)</span>.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ic">req</span></td>
+                <td>
+                  Request object — contains everything about the incoming HTTP
+                  request: headers, URL params, body, query string.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ic">res</span></td>
+                <td>
+                  Response object — methods to send a response back to the
+                  client: <span class="ic">res.send()</span>,
+                  <span class="ic">res.json()</span>,
+                  <span class="ic">res.status()</span>.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ic">res.send()</span></td>
+                <td>
+                  Sends any type (string, Buffer, object). Sets Content-Type
+                  automatically.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ic">res.json(data)</span></td>
+                <td>
+                  Sends JSON response + sets
+                  <span class="ic">Content-Type: application/json</span>.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ic">app.listen(port, cb)</span></td>
+                <td>
+                  Starts server. Must be LAST — routes must be defined before
+                  server starts listening.
+                </td>
+              </tr>
+              <tr>
+                <td><span class="ic">node app.js</span></td>
+                <td>
+                  Run the app. Press Ctrl+C to stop. Must restart after code
+                  changes.
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="card">
+            <h3 class="c1">res.send vs res.json — when to use which</h3>
+            <pre><span class="cm">// res.send — plain text, HTML, or simple string</span>
+<span class="vr">res</span>.<span class="fn">send</span>(<span class="st">"Hello World"</span>);        <span class="cm">// Content-Type: text/html</span>
+<span class="vr">res</span>.<span class="fn">send</span>({ <span class="prop">a</span>: <span class="nm">1</span> });           <span class="cm">// also works but use res.json for objects</span>
+
+<span class="cm">// res.json — use for API responses (objects, arrays)</span>
+<span class="vr">res</span>.<span class="fn">json</span>([{ <span class="prop">id</span>: <span class="nm">1</span>, <span class="prop">name</span>: <span class="st">"Apple"</span> }]); <span class="cm">// Content-Type: application/json</span>
+<span class="vr">res</span>.<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Not found"</span> });
+
+<span class="cm">// Chaining status then json:</span>
+<span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">201</span>).<span class="fn">json</span>({ <span class="prop">id</span>: <span class="nm">5</span> }); <span class="cm">// 201 Created</span>
+<span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Not found"</span> });
+<span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">204</span>).<span class="fn">send</span>();         <span class="cm">// No Content — send() with no arg</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 2: REST CONCEPTS -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s2" class="sh c2">🌐 2 · REST CONCEPTS — What, Why, How</div>
+      <div class="g3">
+        <div class="card">
+          <h3 class="c2">What is REST?</h3>
+          <p>
+            <b>REST</b> = Representational State Transfer. An architectural
+            style (not a protocol) for designing networked APIs.
+          </p>
+          <div class="hl p" style="margin-top: 8px">
+            <b>Key REST principles:</b><br />
+            • <b>Client-Server:</b> Frontend and backend are separate,
+            communicate via HTTP<br />
+            • <b>Stateless:</b> Every request contains ALL info needed — server
+            stores no session<br />
+            • <b>Uniform Interface:</b> Resources identified by URLs; standard
+            HTTP methods used<br />
+            • <b>Resources:</b> Entities (books, users, foods) identified by
+            URLs like <span class="ic">/books/5</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="c2">HTTP Methods → CRUD Mapping</h3>
+          <table>
+            <tr>
+              <th>Method</th>
+              <th>CRUD</th>
+              <th>SQL</th>
+              <th>Success Status</th>
+            </tr>
+            <tr>
+              <td><span class="badge bg">GET</span></td>
+              <td>Read</td>
+              <td>SELECT</td>
+              <td><span class="pill p2">200 OK</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge bp">POST</span></td>
+              <td>Create</td>
+              <td>INSERT</td>
+              <td><span class="pill p201">201 Created</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge by">PUT</span></td>
+              <td>Update</td>
+              <td>UPDATE</td>
+              <td><span class="pill p2">200 OK</span></td>
+            </tr>
+            <tr>
+              <td><span class="badge br_">DELETE</span></td>
+              <td>Delete</td>
+              <td>DELETE</td>
+              <td><span class="pill p204">204 No Content</span></td>
+            </tr>
+          </table>
+          <div class="hl g" style="margin-top: 8px">
+            <b>Why different methods for same URL?</b>
+            <span class="ic">GET /books</span> reads all;
+            <span class="ic">POST /books</span> creates one. Method + URL
+            together define what action to take.
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="c2">HTTP Status Codes — Complete List</h3>
+          <table>
+            <tr>
+              <th>Code</th>
+              <th>Meaning</th>
+              <th>Use case</th>
+            </tr>
+            <tr>
+              <td><span class="pill p2">200</span></td>
+              <td>OK</td>
+              <td>GET, PUT success</td>
+            </tr>
+            <tr>
+              <td><span class="pill p201">201</span></td>
+              <td>Created</td>
+              <td>POST creates resource</td>
+            </tr>
+            <tr>
+              <td><span class="pill p204">204</span></td>
+              <td>No Content</td>
+              <td>DELETE success (no body)</td>
+            </tr>
+            <tr>
+              <td><span class="pill p4">400</span></td>
+              <td>Bad Request</td>
+              <td>Validation fail, invalid id</td>
+            </tr>
+            <tr>
+              <td><span class="pill p401">401</span></td>
+              <td>Unauthorized</td>
+              <td>Not logged in / no credentials</td>
+            </tr>
+            <tr>
+              <td><span class="pill p403">403</span></td>
+              <td>Forbidden</td>
+              <td>Logged in but no permission</td>
+            </tr>
+            <tr>
+              <td><span class="pill p404">404</span></td>
+              <td>Not Found</td>
+              <td>Resource doesn't exist in DB</td>
+            </tr>
+            <tr>
+              <td><span class="pill p5">500</span></td>
+              <td>Internal Server Error</td>
+              <td>Unhandled DB/server crash</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- HTTP Structure -->
+      <div class="g2">
+        <div class="card">
+          <h3 class="c2">HTTP Request Structure — all 4 methods</h3>
+          <pre><span class="cm">── GET request (no body) ────────────────────────────</span>
+<span class="fn">GET</span> /books <span class="st">HTTP/1.1</span>             <span class="cm">← Request Line: method + path + version</span>
+<span class="prop">User-Agent:</span> Chrome               <span class="cm">← Request Headers</span>
+<span class="prop">Accept:</span> application/json
+[CRLF]                            <span class="cm">← blank line = end of headers</span>
+                                  <span class="cm">← no request body for GET</span>
+
+<span class="cm">── POST request (JSON body) ─────────────────────────</span>
+<span class="fn">POST</span> /books <span class="st">HTTP/1.1</span>
+<span class="prop">Content-Type:</span> application/json   <span class="cm">← tells server body is JSON</span>
+[CRLF]
+{<span class="st">"title"</span>:<span class="st">"Dune"</span>,<span class="st">"author"</span>:<span class="st">"Herbert"</span>} <span class="cm">← Request Body</span>
+
+<span class="cm">── PUT request ──────────────────────────────────────</span>
+<span class="fn">PUT</span> /books/5 <span class="st">HTTP/1.1</span>            <span class="cm">← URL has :id</span>
+<span class="prop">Content-Type:</span> application/json
+[CRLF]
+{<span class="st">"title"</span>:<span class="st">"Dune Updated"</span>}         <span class="cm">← updated fields</span>
+
+<span class="cm">── DELETE request (no body) ─────────────────────────</span>
+<span class="fn">DELETE</span> /books/5 <span class="st">HTTP/1.1</span>
+<span class="prop">Accept:</span> application/json
+[CRLF]
+                                  <span class="cm">← no body needed for DELETE</span></pre>
+        </div>
+        <div class="card">
+          <h3 class="c2">HTTP Response Structure</h3>
+          <pre><span class="cm">── 200 OK with body ─────────────────────────────────</span>
+<span class="st">HTTP/1.1</span> <span class="nm">200</span> <span class="fn">OK</span>                  <span class="cm">← Response Status Line</span>
+<span class="prop">Content-Type:</span> application/json   <span class="cm">← Response Headers</span>
+<span class="prop">Content-Length:</span> 48
+[CRLF]
+[{<span class="st">"id"</span>:<span class="nm">1</span>,<span class="st">"title"</span>:<span class="st">"Dune"</span>}]         <span class="cm">← Response Body</span>
+
+<span class="cm">── 201 Created ──────────────────────────────────────</span>
+<span class="st">HTTP/1.1</span> <span class="nm">201</span> Created
+<span class="prop">Location:</span> /books/5               <span class="cm">← where new resource lives</span>
+[CRLF]
+{<span class="st">"id"</span>:<span class="nm">5</span>,<span class="st">"title"</span>:<span class="st">"Dune"</span>}
+
+<span class="cm">── 204 No Content (DELETE success) ──────────────────</span>
+<span class="st">HTTP/1.1</span> <span class="nm">204</span> No Content
+[CRLF]
+                                  <span class="cm">← no body at all</span>
+
+<span class="cm">── 400 Bad Request ──────────────────────────────────</span>
+<span class="st">HTTP/1.1</span> <span class="nm">400</span> Bad Request
+[CRLF]
+{<span class="st">"error"</span>:<span class="st">"Title is required"</span>}
+
+<span class="cm">── 500 Internal Server Error ─────────────────────────</span>
+<span class="st">HTTP/1.1</span> <span class="nm">500</span> Internal Server Error
+[CRLF]
+{<span class="st">"error"</span>:<span class="st">"Error retrieving books"</span>}</pre>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 3: IN-MEMORY CRUD (P02) -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s3" class="sh c3">
+        🍎 3 · IN-MEMORY CRUD — Practical 02 (Foods API)
+      </div>
+      <div class="card">
+        <h3 class="c3">
+          Complete foods-api app.js (P02 pattern) — every line explained
+        </h3>
+        <pre><span class="kw">const</span> <span class="vr">express</span> = <span class="fn">require</span>(<span class="st">"express"</span>);
+<span class="kw">const</span> <span class="vr">app</span>     = <span class="fn">express</span>();
+<span class="kw">const</span> <span class="vr">PORT</span>    = <span class="nm">3000</span>;
+
+<span class="vr">app</span>.<span class="fn">use</span>(<span class="vr">express</span>.<span class="fn">json</span>());   <span class="cm">// MUST be before routes — parses JSON bodies into req.body</span>
+
+<span class="kw">let</span> <span class="vr">foods</span> = [];              <span class="cm">// in-memory "database" — resets on server restart</span>
+<span class="cm">// Each item: { id: number, name: string, calories: number }</span>
+
+<span class="cm">// ── CREATE (POST /foods) ────────────────────────────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">post</span>(<span class="st">"/foods"</span>, (<span class="vr">req</span>, <span class="vr">res</span>) => {
+  <span class="kw">const</span> { <span class="vr">name</span>, <span class="vr">calories</span> } = <span class="vr">req</span>.<span class="vr">body</span>; <span class="cm">// destructure from parsed JSON body</span>
+
+  <span class="kw">if</span> (!<span class="vr">name</span> || <span class="vr">calories</span> == <span class="kw">null</span>) {   <span class="cm">// validation: both fields required</span>
+    <span class="cm">// calories == null catches both null AND undefined (== not ===)</span>
+    <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">400</span>).<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">"name and calories are required"</span> });
+  }
+
+  <span class="kw">const</span> <span class="vr">newFood</span> = { <span class="prop">id</span>: <span class="vr">Date</span>.<span class="fn">now</span>(), <span class="vr">name</span>, <span class="vr">calories</span> };
+  <span class="cm">// Date.now() = milliseconds since epoch → unique id (enough for in-memory)</span>
+  <span class="cm">// Shorthand: { name } is same as { name: name }</span>
+
+  <span class="vr">foods</span>.<span class="fn">push</span>(<span class="vr">newFood</span>);                <span class="cm">// add to array</span>
+  <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">201</span>).<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">"Food created successfully."</span>, <span class="prop">food</span>: <span class="vr">newFood</span> });
+});
+
+<span class="cm">// ── READ ALL (GET /foods) with optional filter ──────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/foods"</span>, (<span class="vr">req</span>, <span class="vr">res</span>) => {
+  <span class="kw">const</span> { <span class="vr">name</span> } = <span class="vr">req</span>.<span class="vr">query</span>;       <span class="cm">// req.query = ?name=App → { name: "App" }</span>
+  <span class="kw">let</span> <span class="vr">results</span> = <span class="vr">foods</span>;
+
+  <span class="kw">if</span> (<span class="vr">name</span>) {
+    <span class="vr">results</span> = <span class="vr">foods</span>.<span class="fn">filter</span>(<span class="vr">f</span> => <span class="vr">f</span>.<span class="vr">name</span>.<span class="fn">includes</span>(<span class="vr">name</span>));
+    <span class="cm">// .filter() returns new array of items where callback returns true</span>
+    <span class="cm">// .includes() = partial string match (case-sensitive)</span>
+  }
+  <span class="vr">res</span>.<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">`Found <span class="vr">${results.length}</span> food(s)`</span>, <span class="prop">foods</span>: <span class="vr">results</span> });
+});
+
+<span class="cm">// ── UPDATE (PUT /foods/:id) ──────────────────────────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">put</span>(<span class="st">"/foods/:id"</span>, (<span class="vr">req</span>, <span class="vr">res</span>) => {
+  <span class="kw">const</span> <span class="vr">foodId</span> = <span class="vr">Number</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);  <span class="cm">// URL param is a STRING → convert</span>
+  <span class="cm">// Date.now() generated IDs are numbers, so we use Number() not parseInt()</span>
+  <span class="kw">const</span> { <span class="vr">name</span>, <span class="vr">calories</span> } = <span class="vr">req</span>.<span class="vr">body</span>;
+
+  <span class="kw">if</span> (!<span class="vr">name</span> || <span class="vr">calories</span> == <span class="kw">null</span>) {
+    <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">400</span>).<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">"name and calories are required"</span> });
+  }
+
+  <span class="kw">const</span> <span class="vr">idx</span> = <span class="vr">foods</span>.<span class="fn">findIndex</span>(<span class="vr">f</span> => <span class="vr">f</span>.<span class="vr">id</span> === <span class="vr">foodId</span>);
+  <span class="cm">// findIndex returns -1 if not found</span>
+  <span class="kw">if</span> (<span class="vr">idx</span> === -<span class="nm">1</span>) {
+    <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">`No food found with id <span class="vr">${foodId}</span>`</span> });
+  }
+
+  <span class="vr">foods</span>[<span class="vr">idx</span>] = { <span class="prop">id</span>: <span class="vr">foodId</span>, <span class="vr">name</span>, <span class="vr">calories</span> }; <span class="cm">// replace entirely</span>
+  <span class="vr">res</span>.<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">"Updated"</span>, <span class="prop">food</span>: <span class="vr">foods</span>[<span class="vr">idx</span>] });
+});
+
+<span class="cm">// ── DELETE (DELETE /foods/:id) ───────────────────────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">delete</span>(<span class="st">"/foods/:id"</span>, (<span class="vr">req</span>, <span class="vr">res</span>) => {
+  <span class="kw">const</span> <span class="vr">foodId</span> = <span class="vr">Number</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);
+  <span class="kw">const</span> <span class="vr">exists</span> = <span class="vr">foods</span>.<span class="fn">some</span>(<span class="vr">f</span> => <span class="vr">f</span>.<span class="vr">id</span> === <span class="vr">foodId</span>);
+  <span class="cm">// .some() returns true if ANY item matches predicate</span>
+  <span class="kw">if</span> (!<span class="vr">exists</span>) {
+    <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">`No food with id <span class="vr">${foodId}</span>`</span> });
+  }
+  <span class="vr">foods</span> = <span class="vr">foods</span>.<span class="fn">filter</span>(<span class="vr">f</span> => <span class="vr">f</span>.<span class="vr">id</span> !== <span class="vr">foodId</span>); <span class="cm">// keep all EXCEPT this one</span>
+  <span class="vr">res</span>.<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">`Food <span class="vr">${foodId}</span> deleted`</span> });
+});
+
+<span class="vr">app</span>.<span class="fn">listen</span>(<span class="vr">PORT</span>, () => <span class="vr">console</span>.<span class="fn">log</span>(<span class="st">`Running on port <span class="vr">${PORT}</span>`</span>));</pre>
+      </div>
+      <div class="g3">
+        <div class="card">
+          <h3 class="c3">req.body vs req.query vs req.params</h3>
+          <table>
+            <tr>
+              <th>Property</th>
+              <th>Source</th>
+              <th>Example URL / body</th>
+              <th>How to read</th>
+            </tr>
+            <tr>
+              <td><span class="ic">req.params.id</span></td>
+              <td>URL segment defined as <span class="ic">:id</span></td>
+              <td><span class="ic">/foods/17</span></td>
+              <td><span class="ic">Number(req.params.id)</span></td>
+            </tr>
+            <tr>
+              <td><span class="ic">req.query.name</span></td>
+              <td>Query string after <span class="ic">?</span></td>
+              <td><span class="ic">/foods?name=App</span></td>
+              <td><span class="ic">req.query.name</span></td>
+            </tr>
+            <tr>
+              <td><span class="ic">req.body.name</span></td>
+              <td>JSON/form body</td>
+              <td>POST body JSON</td>
+              <td>
+                <span class="ic">req.body.name</span> (needs express.json())
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3 class="c3">Array methods used in P02</h3>
+          <table>
+            <tr>
+              <th>Method</th>
+              <th>Purpose</th>
+              <th>Returns</th>
+            </tr>
+            <tr>
+              <td><span class="ic">.push(item)</span></td>
+              <td>Add to end</td>
+              <td>New length</td>
+            </tr>
+            <tr>
+              <td><span class="ic">.filter(fn)</span></td>
+              <td>Keep matching items</td>
+              <td>New array</td>
+            </tr>
+            <tr>
+              <td><span class="ic">.findIndex(fn)</span></td>
+              <td>Find position</td>
+              <td>Index or -1</td>
+            </tr>
+            <tr>
+              <td><span class="ic">.some(fn)</span></td>
+              <td>Check if any match</td>
+              <td>Boolean</td>
+            </tr>
+            <tr>
+              <td><span class="ic">.includes(str)</span></td>
+              <td>String contains</td>
+              <td>Boolean</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3 class="c3">Why in-memory is NOT production-ready</h3>
+          <div class="hl r">
+            <b>Problem 1 — Not persistent:</b> All data lost when server
+            restarts. <span class="ic">let foods = []</span> is just a JS
+            variable in RAM.
+          </div>
+          <div class="hl r" style="margin-top: 6px">
+            <b>Problem 2 — Not scalable:</b> If 2 server instances run, each has
+            its own array — they get out of sync.
+          </div>
+          <div class="hl r" style="margin-top: 6px">
+            <b>Problem 3 — No queries:</b> Must filter in JS — slow for large
+            datasets.
+          </div>
+          <div class="hl g" style="margin-top: 6px">
+            <b>Solution → MSSQL database (P03+)</b>: Persistent, concurrent,
+            queryable.
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 4: MSSQL SETUP (P03) -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s4" class="sh c4">🗄️ 4 · MSSQL INTEGRATION — Practical 03</div>
+      <div class="g2">
+        <div>
+          <div class="card">
+            <h3 class="c4">SQL Server Setup Checklist</h3>
+            <div class="hl o">
+              <b>1. Enable TCP/IP</b> → SQL Server Configuration Manager → SQL
+              Server Network Config → Protocols for SQLEXPRESS → TCP/IP:
+              Enabled. Set TCP Port to 1433 under IPAll tab. Restart SQL
+              Server.<br /><br />
+              <b>2. Mixed Mode Auth</b> → SSMS → Right-click server → Properties
+              → Security → "SQL Server and Windows Authentication mode".
+              Restart.<br /><br />
+              <b>3. Create DB</b> → SSMS → Right-click Databases → New Database
+              → name: <span class="ic">bed_db</span><br /><br />
+              <b>4. Create Login User</b> → SSMS → Security → Logins → New Login
+              → SQL Server auth → User Mapping:
+              <span class="ic">bed_db</span> with
+              <span class="ic">db_datareader</span> +
+              <span class="ic">db_datawriter</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="c4">Books table SQL</h3>
+            <pre><span class="cm">-- Create Books table</span>
+<span class="kw">CREATE TABLE</span> Books (
+  id     <span class="vr">INT</span> <span class="fn">IDENTITY</span>(<span class="nm">1</span>,<span class="nm">1</span>) <span class="kw">PRIMARY KEY</span>,
+  <span class="cm">-- IDENTITY(1,1): starts at 1, increments by 1 (auto-generated PK)</span>
+  title  <span class="vr">VARCHAR</span>(<span class="nm">50</span>) <span class="kw">NOT NULL UNIQUE</span>,
+  <span class="cm">-- NOT NULL: value required. UNIQUE: no duplicates allowed</span>
+  author <span class="vr">VARCHAR</span>(<span class="nm">50</span>) <span class="kw">NOT NULL</span>
+);
+
+<span class="cm">-- Sample data</span>
+<span class="kw">INSERT INTO</span> Books (title, author)
+<span class="kw">VALUES</span>
+  (<span class="st">'The Lord of the Rings'</span>, <span class="st">'J.R.R. Tolkien'</span>),
+  (<span class="st">'Pride and Prejudice'</span>,   <span class="st">'Jane Austen'</span>);</pre>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h3 class="c4">mssql package — how it works</h3>
+            <pre><span class="kw">const</span> <span class="vr">sql</span> = <span class="fn">require</span>(<span class="st">"mssql"</span>);
+<span class="cm">// npm install mssql to install</span>
+
+<span class="cm">// ── CONNECT ───────────────────────────────────────</span>
+<span class="kw">const</span> <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+<span class="cm">// Opens a connection using credentials in dbConfig
+// Returns a connection object</span>
+
+<span class="cm">// ── CREATE REQUEST ────────────────────────────────</span>
+<span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+<span class="cm">// Creates a SQL request object on this connection</span>
+
+<span class="cm">// ── BIND PARAMETERS (parameterized query) ─────────</span>
+<span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>, <span class="vr">bookId</span>);
+<span class="cm">// "id" = name used as @id in SQL, bookId = value
+// CRITICAL: prevents SQL injection — treats value as DATA not code</span>
+
+<span class="cm">// ── EXECUTE QUERY ─────────────────────────────────</span>
+<span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="st">"SELECT * FROM Books WHERE id = @id"</span>);
+
+<span class="cm">// ── ACCESS RESULTS ────────────────────────────────</span>
+<span class="vr">result</span>.<span class="vr">recordset</span>        <span class="cm">// array of row objects</span>
+<span class="vr">result</span>.<span class="vr">recordset</span>[<span class="nm">0</span>]     <span class="cm">// first row (single record)</span>
+<span class="vr">result</span>.<span class="vr">recordset</span>.<span class="vr">length</span> <span class="cm">// how many rows returned</span>
+<span class="vr">result</span>.<span class="vr">rowsAffected</span>[<span class="nm">0</span>]  <span class="cm">// # rows changed (UPDATE/DELETE)</span>
+
+<span class="cm">// ── CLOSE CONNECTION ─────────────────────────────</span>
+<span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>();
+<span class="cm">// MUST call in finally block — releases DB resources</span></pre>
+          </div>
+          <div class="card">
+            <h3 class="c4">result object structure</h3>
+            <pre>{
+  <span class="prop">recordsets</span>: [ [<span class="cm">/* 1st result set */</span>], [<span class="cm">/* 2nd */</span>] ],
+  <span class="prop">recordset</span>:  [<span class="cm">/* 1st result set — shortcut */</span>],
+  <span class="cm">// recordset is array of plain objects:</span>
+  <span class="cm">// [{ id: 1, title: "Dune", author: "Herbert" }, ...]</span>
+  <span class="cm">// Column names in SELECT → object keys</span>
+  <span class="cm">// Column aliases (AS) → object keys</span>
+  <span class="prop">output</span>:      {},          <span class="cm">// output parameters (stored procs)</span>
+  <span class="prop">rowsAffected</span>: [<span class="nm">1</span>]         <span class="cm">// one entry per SQL statement</span>
+}
+
+<span class="cm">// Checking if record exists:</span>
+<span class="kw">if</span> (<span class="vr">result</span>.<span class="vr">recordset</span>.<span class="vr">length</span> === <span class="nm">0</span>) <span class="kw">return null</span>;
+
+<span class="cm">// Checking if update/delete found the row:</span>
+<span class="kw">return</span> <span class="vr">result</span>.<span class="vr">rowsAffected</span>[<span class="nm">0</span>] > <span class="nm">0</span>; <span class="cm">// true if found</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 5: MVC -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s5" class="sh c5">🏗️ 5 · MVC ARCHITECTURE — Practical 04</div>
+      <div class="g3">
+        <div class="card">
+          <h3 class="c5">Why MVC? (P03 problems solved)</h3>
+          <table>
+            <tr>
+              <th>P03 Problem</th>
+              <th>MVC Solution</th>
+            </tr>
+            <tr>
+              <td>All DB logic inside route handlers — messy</td>
+              <td>DB logic extracted into Model files</td>
+            </tr>
+            <tr>
+              <td>Hard to reuse DB functions</td>
+              <td>Model functions callable from anywhere</td>
+            </tr>
+            <tr>
+              <td>Can't test DB logic separately</td>
+              <td>Model is independently testable</td>
+            </tr>
+            <tr>
+              <td>No validation → 500 on bad input</td>
+              <td>Joi middleware validates before controller</td>
+            </tr>
+            <tr>
+              <td>Passwords hardcoded in dbConfig</td>
+              <td>dotenv → credentials in .env</td>
+            </tr>
+          </table>
+          <div class="hl y" style="margin-top: 8px">
+            <b>MVC = Model + View + Controller</b><br />
+            <b>Model</b> — only database logic (queries, connections)<br />
+            <b>View</b> — HTML/JS frontend (P05)<br />
+            <b>Controller</b> — request/response handling, calls Model<br />
+            <b>Middleware</b> — validation, auth, sits between route and
+            controller
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="c5">MVC Request Flow</h3>
+          <div class="flow">
+            <div class="fb c1">
+              Client<br /><span style="font-size: 9px">browser/Postman</span>
+            </div>
+            <div class="fa">→</div>
+            <div class="fb c1">
+              app.js<br /><span style="font-size: 9px">Route defined</span>
+            </div>
+            <div class="fa">→</div>
+            <div class="fb c5" style="border-color: #ffd60a; color: #ffd60a">
+              Middleware<br /><span style="font-size: 9px">validateBook()</span>
+            </div>
+            <div class="fa">→</div>
+            <div class="fb c2">
+              Controller<br /><span style="font-size: 9px"
+                >req/res handling</span
+              >
+            </div>
+            <div class="fa">→</div>
+            <div class="fb c3">
+              Model<br /><span style="font-size: 9px">DB queries</span>
+            </div>
+            <div class="fa">→</div>
+            <div class="fb c4">MSSQL DB</div>
+          </div>
+          <div class="hl b" style="margin-top: 10px">
+            <b>Key rule:</b> Controller NEVER talks to DB directly. Model NEVER
+            touches req/res. This separation means you can change how DB works
+            without touching routes, and vice versa.
+          </div>
+          <div class="hl g" style="margin-top: 6px">
+            <b>module.exports pattern:</b><br />
+            Model exports functions → Controller imports them<br />
+            Controller exports functions → app.js imports them<br />
+            Middleware exports functions → app.js uses them in routes
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="c5">Complete Project Structure</h3>
+          <pre>books-api-mvc-db/
+├── app.js           <span class="cm">← entry point, routes, server</span>
+├── dbConfig.js      <span class="cm">← DB credentials (reads from .env)</span>
+├── .env             <span class="cm">← secret credentials — NOT committed</span>
+├── .gitignore       <span class="cm">← must include .env, node_modules/</span>
+├── package.json     <span class="cm">← project metadata + dependencies</span>
+├── models/
+│   ├── bookModel.js <span class="cm">← Book DB queries</span>
+│   └── userModel.js <span class="cm">← User DB queries (P06)</span>
+├── controllers/
+│   ├── bookController.js  <span class="cm">← Book req/res</span>
+│   └── userController.js  <span class="cm">← User req/res (P06)</span>
+├── middlewares/
+│   └── bookValidation.js  <span class="cm">← Joi schemas + middleware fns</span>
+└── public/          <span class="cm">← static frontend (P05)</span>
+    ├── index.html
+    ├── script.js
+    ├── create.html
+    ├── create-script.js
+    ├── edit.html
+    └── edit-script.js</pre>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 6: FULL app.js -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s6" class="sh c1">
+        📄 6 · FULL app.js — With Every Line Annotated
+      </div>
+      <div class="card">
+        <pre><span class="kw">const</span> <span class="vr">express</span> = <span class="fn">require</span>(<span class="st">"express"</span>);
+<span class="cm">// Load Express from node_modules — enables app.get(), app.use(), app.listen() etc.</span>
+
+<span class="kw">const</span> <span class="vr">sql</span> = <span class="fn">require</span>(<span class="st">"mssql"</span>);
+<span class="cm">// Load mssql — needed here ONLY for sql.close() in graceful shutdown
+// (actual DB queries happen inside models)</span>
+
+<span class="kw">const</span> <span class="vr">dotenv</span> = <span class="fn">require</span>(<span class="st">"dotenv"</span>);
+<span class="cm">// Load dotenv package — used to read .env file into process.env</span>
+
+<span class="kw">const</span> <span class="vr">path</span> = <span class="fn">require</span>(<span class="st">"path"</span>);
+<span class="cm">// Built-in Node.js module — builds file paths safely across Windows/Mac/Linux</span>
+
+<span class="vr">dotenv</span>.<span class="fn">config</span>();
+<span class="cm">// MUST be called BEFORE accessing process.env.ANY_VARIABLE
+// Reads .env file line by line: PORT=3000 → process.env.PORT = "3000"
+// If called too late, process.env variables will be undefined</span>
+
+<span class="cm">// ── IMPORT CONTROLLERS ─────────────────────────────────────────────────────</span>
+<span class="kw">const</span> <span class="vr">bookController</span> = <span class="fn">require</span>(<span class="st">"./controllers/bookController"</span>);
+<span class="cm">// "./" = relative to current file (app.js is in project root)
+// Returns what bookController.js assigned to module.exports</span>
+
+<span class="kw">const</span> <span class="vr">userController</span> = <span class="fn">require</span>(<span class="st">"./controllers/userController"</span>);
+<span class="cm">// P06: added when user routes are needed</span>
+
+<span class="cm">// ── IMPORT MIDDLEWARE ───────────────────────────────────────────────────────</span>
+<span class="kw">const</span> { <span class="vr">validateBook</span>, <span class="vr">validateBookId</span> } = <span class="fn">require</span>(<span class="st">"./middlewares/bookValidation"</span>);
+<span class="cm">// Destructuring: extract named exports from the module
+// Same as: const bv = require(...); const validateBook = bv.validateBook;</span>
+
+<span class="cm">// ── APP SETUP ───────────────────────────────────────────────────────────────</span>
+<span class="kw">const</span> <span class="vr">app</span>  = <span class="fn">express</span>();
+<span class="kw">const</span> <span class="vr">port</span> = <span class="vr">process</span>.<span class="vr">env</span>.<span class="prop">PORT</span> || <span class="nm">3000</span>;
+<span class="cm">// process.env.PORT = value from .env file (string "3000")
+// || 3000 = fallback if PORT not set in .env</span>
+
+<span class="cm">// ── BODY PARSING MIDDLEWARE ─────────────────────────────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">use</span>(<span class="vr">express</span>.<span class="fn">json</span>());
+<span class="cm">// Parses incoming JSON request bodies
+// When client sends: Content-Type: application/json + JSON body string
+// Express parses it into a JS object and puts it in req.body
+// WITHOUT this: req.body would be undefined for JSON requests</span>
+
+<span class="vr">app</span>.<span class="fn">use</span>(<span class="vr">express</span>.<span class="fn">urlencoded</span>({ <span class="prop">extended</span>: <span class="kw">true</span> }));
+<span class="cm">// Parses URL-encoded form data (application/x-www-form-urlencoded)
+// When HTML form submits: name=Alex&id=5 → { name: "Alex", id: "5" }
+// extended: true = uses qs library (handles nested objects)
+// extended: false = uses querystring library (simpler)</span>
+
+<span class="cm">// ── STATIC FILES (P05) ───────────────────────────────────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">use</span>(<span class="vr">express</span>.<span class="fn">static</span>(<span class="vr">path</span>.<span class="fn">join</span>(<span class="vr">__dirname</span>, <span class="st">"public"</span>)));
+<span class="cm">// __dirname = absolute path of current file, e.g. "C:/projects/books-api-mvc-db"
+// path.join(__dirname, "public") = "C:/projects/books-api-mvc-db/public"
+// express.static serves any file in that folder at the root URL
+// GET /index.html → serves public/index.html
+// GET /script.js  → serves public/script.js
+// Place BEFORE API routes so static files are served without hitting API logic</span>
+
+<span class="cm">// ── BOOK ROUTES ─────────────────────────────────────────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/books"</span>,       <span class="vr">bookController</span>.<span class="fn">getAllBooks</span>);
+<span class="cm">// No middleware needed — reading all books doesn't need validation</span>
+
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/books/:id"</span>,   <span class="vr">validateBookId</span>, <span class="vr">bookController</span>.<span class="fn">getBookById</span>);
+<span class="cm">// validateBookId runs FIRST → if id invalid, sends 400 and stops
+// If id valid, calls next() → bookController.getBookById runs</span>
+
+<span class="vr">app</span>.<span class="fn">post</span>(<span class="st">"/books"</span>,      <span class="vr">validateBook</span>, <span class="vr">bookController</span>.<span class="fn">createBook</span>);
+<span class="cm">// validateBook checks req.body has valid title+author before createBook runs</span>
+
+<span class="vr">app</span>.<span class="fn">put</span>(<span class="st">"/books/:id"</span>,   <span class="vr">validateBookId</span>, <span class="vr">validateBook</span>, <span class="vr">bookController</span>.<span class="fn">updateBook</span>);
+<span class="cm">// TWO middlewares: first validate id, then validate body, then update
+// Express chains them in order — each must call next() to continue</span>
+
+<span class="vr">app</span>.<span class="fn">delete</span>(<span class="st">"/books/:id"</span>, <span class="vr">validateBookId</span>, <span class="vr">bookController</span>.<span class="fn">deleteBook</span>);
+
+<span class="cm">// ── USER ROUTES (P06) ───────────────────────────────────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">post</span>(<span class="st">"/users"</span>,            <span class="vr">userController</span>.<span class="fn">createUser</span>);
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/users"</span>,             <span class="vr">userController</span>.<span class="fn">getAllUsers</span>);
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/users/search"</span>,      <span class="vr">userController</span>.<span class="fn">searchUsers</span>);
+<span class="cm">// IMPORTANT: /users/search MUST be defined BEFORE /users/:id
+// Express matches routes in order — if :id is first, "search" would match it
+// as id="search" and go to getUserById instead!</span>
+
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/users/with-books"</span>, <span class="vr">userController</span>.<span class="fn">getUsersWithBooks</span>);
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/users/:id"</span>,         <span class="vr">userController</span>.<span class="fn">getUserById</span>);
+<span class="vr">app</span>.<span class="fn">put</span>(<span class="st">"/users/:id"</span>,         <span class="vr">userController</span>.<span class="fn">updateUser</span>);
+<span class="vr">app</span>.<span class="fn">delete</span>(<span class="st">"/users/:id"</span>,      <span class="vr">userController</span>.<span class="fn">deleteUser</span>);
+
+<span class="cm">// ── START SERVER ─────────────────────────────────────────────────────────────</span>
+<span class="vr">app</span>.<span class="fn">listen</span>(<span class="vr">port</span>, () => {
+  <span class="vr">console</span>.<span class="fn">log</span>(<span class="st">`Server running on port <span class="vr">${port}</span>`</span>);
+});
+<span class="cm">// Binds server to port. Callback fires when server is ready.
+// node app.js → this is what starts everything</span>
+
+<span class="cm">// ── GRACEFUL SHUTDOWN ────────────────────────────────────────────────────────</span>
+<span class="vr">process</span>.<span class="fn">on</span>(<span class="st">"SIGINT"</span>, <span class="kw">async</span> () => {
+  <span class="vr">console</span>.<span class="fn">log</span>(<span class="st">"Server is gracefully shutting down"</span>);
+  <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">close</span>(); <span class="cm">// close mssql connection pool</span>
+  <span class="vr">console</span>.<span class="fn">log</span>(<span class="st">"Database connections closed"</span>);
+  <span class="vr">process</span>.<span class="fn">exit</span>(<span class="nm">0</span>);   <span class="cm">// 0 = clean exit, 1 = error exit</span>
+});
+<span class="cm">// SIGINT = signal sent by Ctrl+C
+// Without this: DB connections leak — eventually server can't open new ones
+// process.on() registers an event listener on the Node.js process object</span></pre>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 7: dbConfig + dotenv -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s7" class="sh c7">🔑 7 · dbConfig.js + dotenv + .env</div>
+      <div class="g2">
+        <div class="card">
+          <h3 class="c7">dbConfig.js — complete with explanations</h3>
+          <pre><span class="cm">// dbConfig.js — database connection configuration
+// This file exports a config OBJECT that mssql's sql.connect() accepts</span>
+
+<span class="kw">module</span>.<span class="vr">exports</span> = {
+  <span class="prop">user</span>:     <span class="vr">process</span>.<span class="vr">env</span>.<span class="prop">DB_USER</span>,
+  <span class="cm">// SQL Server login username — from .env</span>
+
+  <span class="prop">password</span>: <span class="vr">process</span>.<span class="vr">env</span>.<span class="prop">DB_PASSWORD</span>,
+  <span class="cm">// Password — NEVER hardcode! Reading from env var keeps it out of git</span>
+
+  <span class="prop">server</span>:   <span class="vr">process</span>.<span class="vr">env</span>.<span class="prop">DB_SERVER</span>,
+  <span class="cm">// Server hostname, e.g. "localhost" or "192.168.1.5"</span>
+
+  <span class="prop">database</span>: <span class="vr">process</span>.<span class="vr">env</span>.<span class="prop">DB_DATABASE</span>,
+  <span class="cm">// Which database to connect to: "bed_db"</span>
+
+  <span class="prop">trustServerCertificate</span>: <span class="kw">true</span>,
+  <span class="cm">// DEV ONLY: skip SSL certificate validation
+  // In production: false + provide proper certificate</span>
+
+  <span class="prop">options</span>: {
+    <span class="prop">port</span>: <span class="fn">parseInt</span>(<span class="vr">process</span>.<span class="vr">env</span>.<span class="prop">DB_PORT</span>),
+    <span class="cm">// process.env values are STRINGS — parseInt() converts "1433" → 1433
+    // 1433 is the default SQL Server port</span>
+
+    <span class="prop">connectionTimeout</span>: <span class="nm">60000</span>,
+    <span class="cm">// ms to wait before connection attempt fails — 60 seconds</span>
+  },
+};</pre>
+        </div>
+        <div>
+          <div class="card">
+            <h3 class="c7">.env file</h3>
+            <pre><span class="cm"># .env — stored in project root, NEVER committed to git</span>
+<span class="prop">PORT</span>=<span class="nm">3000</span>
+<span class="prop">DB_USER</span>=booksapi_user
+<span class="prop">DB_PASSWORD</span>=your_secure_password
+<span class="prop">DB_SERVER</span>=localhost
+<span class="prop">DB_DATABASE</span>=bed_db
+<span class="prop">DB_PORT</span>=<span class="nm">1433</span></pre>
+            <div class="hl b">
+              Keys become <span class="ic">process.env.KEY</span> after
+              <span class="ic">dotenv.config()</span> is called. All values are
+              <b>strings</b> — use <span class="ic">parseInt()</span> for
+              numbers.
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="c7">.gitignore file</h3>
+            <pre>node_modules/
+<span class="cm"># Large folder of installed packages — never commit
+# Others can install with: npm install (reads package.json)</span>
+
+.env
+<span class="cm"># Secret credentials — NEVER in version control!
+# If committed, anyone with repo access has your DB password</span>
+
+*.log
+.DS_Store</pre>
+            <div class="hl r">
+              <b>Critical rule:</b> Add <span class="ic">.env</span> to
+              <span class="ic">.gitignore</span> BEFORE your first
+              <span class="ic">git add</span>. Once committed, you must revoke
+              and change credentials — git history is public.
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="c7">Why dotenv? How it works step by step</h3>
+            <table>
+              <tr>
+                <th>Step</th>
+                <th>What happens</th>
+              </tr>
+              <tr>
+                <td>1. <span class="ic">npm install dotenv</span></td>
+                <td>Installs dotenv package</td>
+              </tr>
+              <tr>
+                <td>2. <span class="ic">require("dotenv")</span></td>
+                <td>Loads dotenv module</td>
+              </tr>
+              <tr>
+                <td>3. <span class="ic">dotenv.config()</span></td>
+                <td>
+                  Reads <span class="ic">.env</span> file, parses each
+                  <span class="ic">KEY=VALUE</span> line, sets
+                  <span class="ic">process.env.KEY = "VALUE"</span>
+                </td>
+              </tr>
+              <tr>
+                <td>4. <span class="ic">process.env.DB_USER</span></td>
+                <td>Returns "booksapi_user"</td>
+              </tr>
+              <tr>
+                <td>5. dbConfig uses it</td>
+                <td>
+                  <span class="ic">user: process.env.DB_USER</span> →
+                  "booksapi_user"
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 8: bookModel.js COMPLETE -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s8" class="sh c3">
+        🗄️ 8 · bookModel.js — Complete with All 5 CRUD Functions
+      </div>
+      <div class="card">
+        <pre><span class="kw">const</span> <span class="vr">sql</span>      = <span class="fn">require</span>(<span class="st">"mssql"</span>);       <span class="cm">// mssql package for SQL Server</span>
+<span class="kw">const</span> <span class="vr">dbConfig</span> = <span class="fn">require</span>(<span class="st">"../dbConfig"</span>); <span class="cm">// "../" = up one level from models/ to root</span>
+
+<span class="cm">// ═══════════════════════════════════════════════════════════════════
+// TEMPLATE: try/catch/finally pattern used in EVERY model function
+// - let connection declared outside try so finally can reference it
+// - try: connect, build request, bind inputs, execute query, return result
+// - catch: log + re-throw (controller's catch sends the 500 response)
+// - finally: ALWAYS close connection regardless of success/failure
+// ═══════════════════════════════════════════════════════════════════</span>
+
+<span class="cm">// ── GET ALL ──────────────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">getAllBooks</span>() {
+  <span class="kw">let</span> <span class="vr">connection</span>;                           <span class="cm">// declared outside so finally block can access</span>
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>); <span class="cm">// open DB connection</span>
+    <span class="kw">const</span> <span class="vr">query</span>  = <span class="st">"SELECT id, title, author FROM Books"</span>;
+    <span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">request</span>().<span class="fn">query</span>(<span class="vr">query</span>);
+    <span class="cm">// .request() creates SQL request object
+    // .query(sql) executes it — returns result object</span>
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">recordset</span>;               <span class="cm">// array of book objects</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Database error:"</span>, <span class="vr">error</span>);
+    <span class="kw">throw</span> <span class="vr">error</span>;                            <span class="cm">// re-throw → controller catch sends 500</span>
+  } <span class="kw">finally</span> {
+    <span class="kw">if</span> (<span class="vr">connection</span>) {
+      <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); }    <span class="cm">// always close — prevents connection leak</span>
+      <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Error closing:"</span>, <span class="vr">err</span>); }
+    }
+  }
+}
+
+<span class="cm">// ── GET BY ID (parameterized) ─────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">getBookById</span>(<span class="vr">id</span>) {           <span class="cm">// id passed in from controller</span>
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span>   = <span class="st">"SELECT id, title, author FROM Books WHERE id = @id"</span>;
+    <span class="cm">// @id = NAMED PARAMETER placeholder — mssql replaces it safely</span>
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>, <span class="vr">id</span>);              <span class="cm">// bind @id → value of id param</span>
+    <span class="cm">// .input("paramName", value) — "paramName" matches @paramName in SQL
+    // Value is treated as DATA not SQL code → prevents SQL injection</span>
+    <span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="vr">query</span>);
+    <span class="kw">if</span> (<span class="vr">result</span>.<span class="vr">recordset</span>.<span class="vr">length</span> === <span class="nm">0</span>) <span class="kw">return null</span>; <span class="cm">// not found → return null</span>
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">recordset</span>[<span class="nm">0</span>];           <span class="cm">// single row object</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Database error:"</span>, <span class="vr">error</span>); <span class="kw">throw</span> <span class="vr">error</span>;
+  } <span class="kw">finally</span> {
+    <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} }
+  }
+}
+
+<span class="cm">// ── CREATE (INSERT + SCOPE_IDENTITY) ──────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">createBook</span>(<span class="vr">bookData</span>) {      <span class="cm">// bookData = req.body from controller</span>
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span> = <span class="st">`
+      INSERT INTO Books (title, author) VALUES (@title, @author);
+      SELECT SCOPE_IDENTITY() AS id;
+    `</span>;
+    <span class="cm">// SCOPE_IDENTITY() = returns the auto-generated id of the just-inserted row
+    // Two statements in one query: INSERT first, then SELECT the new id</span>
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"title"</span>,  <span class="vr">bookData</span>.<span class="vr">title</span>);
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"author"</span>, <span class="vr">bookData</span>.<span class="vr">author</span>);
+    <span class="kw">const</span> <span class="vr">result</span>    = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="vr">query</span>);
+    <span class="kw">const</span> <span class="vr">newBookId</span> = <span class="vr">result</span>.<span class="vr">recordset</span>[<span class="nm">0</span>].<span class="vr">id</span>; <span class="cm">// extracted new auto-generated ID</span>
+    <span class="kw">return await</span> <span class="fn">getBookById</span>(<span class="vr">newBookId</span>);       <span class="cm">// fetch and return full book object</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Database error:"</span>, <span class="vr">error</span>); <span class="kw">throw</span> <span class="vr">error</span>;
+  } <span class="kw">finally</span> {
+    <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} }
+  }
+}
+
+<span class="cm">// ── UPDATE ────────────────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">updateBook</span>(<span class="vr">id</span>, <span class="vr">bookData</span>) {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span> = <span class="st">"UPDATE Books SET title = @title, author = @author WHERE id = @id"</span>;
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>,     <span class="vr">id</span>);
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"title"</span>,  <span class="vr">bookData</span>.<span class="vr">title</span>);
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"author"</span>, <span class="vr">bookData</span>.<span class="vr">author</span>);
+    <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="vr">query</span>);             <span class="cm">// no return needed from UPDATE</span>
+    <span class="kw">return await</span> <span class="fn">getBookById</span>(<span class="vr">id</span>);           <span class="cm">// re-fetch updated book to return to client</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Database error:"</span>, <span class="vr">error</span>); <span class="kw">throw</span> <span class="vr">error</span>;
+  } <span class="kw">finally</span> {
+    <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} }
+  }
+}
+
+<span class="cm">// ── DELETE ────────────────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">deleteBook</span>(<span class="vr">id</span>) {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span>   = <span class="st">"DELETE FROM Books WHERE id = @id"</span>;
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>, <span class="vr">id</span>);
+    <span class="kw">const</span> <span class="vr">result</span>  = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="vr">query</span>);
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">rowsAffected</span>[<span class="nm">0</span>] > <span class="nm">0</span>;      <span class="cm">// true if row existed and was deleted</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Database error:"</span>, <span class="vr">error</span>); <span class="kw">throw</span> <span class="vr">error</span>;
+  } <span class="kw">finally</span> {
+    <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} }
+  }
+}
+
+<span class="kw">module</span>.<span class="vr">exports</span> = { <span class="vr">getAllBooks</span>, <span class="vr">getBookById</span>, <span class="vr">createBook</span>, <span class="vr">updateBook</span>, <span class="vr">deleteBook</span> };
+<span class="cm">// module.exports = what other files get when they require() this file
+// Exports as object so controller uses bookModel.getAllBooks() etc.</span></pre>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 9: bookController.js COMPLETE -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s9" class="sh c4">
+        🎮 9 · bookController.js — Complete with All 5 CRUD Functions
+      </div>
+      <div class="card">
+        <pre><span class="kw">const</span> <span class="vr">bookModel</span> = <span class="fn">require</span>(<span class="st">"../models/bookModel"</span>);
+<span class="cm">// Import model — controller delegates ALL DB work to model
+// "../models/" = go up from controllers/ to root, then into models/</span>
+
+<span class="cm">// ── GET ALL ──────────────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">getAllBooks</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="cm">// req = HTTP request object; res = HTTP response object
+  // async because we await model (which awaits DB)</span>
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">books</span> = <span class="kw">await</span> <span class="vr">bookModel</span>.<span class="fn">getAllBooks</span>(); <span class="cm">// call model, await result</span>
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">books</span>);                              <span class="cm">// 200 OK + JSON array</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error:"</span>, <span class="vr">error</span>);   <span class="cm">// model threw error → catch here</span>
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error retrieving books"</span> });
+  }
+}
+
+<span class="cm">// ── GET BY ID ─────────────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">getBookById</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">id</span>   = <span class="fn">parseInt</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);
+    <span class="cm">// req.params.id = URL segment string — parseInt converts "5" → 5
+    // validateBookId middleware already ran — id is valid positive number</span>
+    <span class="kw">const</span> <span class="vr">book</span> = <span class="kw">await</span> <span class="vr">bookModel</span>.<span class="fn">getBookById</span>(<span class="vr">id</span>);
+    <span class="kw">if</span> (!<span class="vr">book</span>) {
+      <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Book not found"</span> });
+      <span class="cm">// model returns null when recordset is empty → 404</span>
+    }
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">book</span>); <span class="cm">// 200 OK + book object</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error retrieving book"</span> });
+  }
+}
+
+<span class="cm">// ── CREATE ────────────────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">createBook</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">newBook</span> = <span class="kw">await</span> <span class="vr">bookModel</span>.<span class="fn">createBook</span>(<span class="vr">req</span>.<span class="vr">body</span>);
+    <span class="cm">// req.body = { title: "Dune", author: "Herbert" }
+    // validateBook middleware already confirmed body is valid</span>
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">201</span>).<span class="fn">json</span>(<span class="vr">newBook</span>); <span class="cm">// 201 Created + new book data</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error creating book"</span> });
+  }
+}
+
+<span class="cm">// ── UPDATE ────────────────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">updateBook</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">id</span>          = <span class="fn">parseInt</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);
+    <span class="kw">const</span> <span class="vr">updatedBook</span> = <span class="kw">await</span> <span class="vr">bookModel</span>.<span class="fn">updateBook</span>(<span class="vr">id</span>, <span class="vr">req</span>.<span class="vr">body</span>);
+    <span class="kw">if</span> (!<span class="vr">updatedBook</span>) {
+      <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Book not found"</span> });
+      <span class="cm">// updateBook calls getBookById after update — if null, book didn't exist</span>
+    }
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">updatedBook</span>); <span class="cm">// 200 + updated book</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error updating book"</span> });
+  }
+}
+
+<span class="cm">// ── DELETE ────────────────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">deleteBook</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">id</span>      = <span class="fn">parseInt</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);
+    <span class="kw">const</span> <span class="vr">success</span> = <span class="kw">await</span> <span class="vr">bookModel</span>.<span class="fn">deleteBook</span>(<span class="vr">id</span>);
+    <span class="cm">// deleteBook returns true if rowsAffected > 0</span>
+    <span class="kw">if</span> (!<span class="vr">success</span>) {
+      <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Book not found"</span> });
+    }
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">204</span>).<span class="fn">send</span>(); <span class="cm">// 204 No Content — deleted successfully, no body to return</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error deleting book"</span> });
+  }
+}
+
+<span class="kw">module</span>.<span class="vr">exports</span> = { <span class="vr">getAllBooks</span>, <span class="vr">getBookById</span>, <span class="vr">createBook</span>, <span class="vr">updateBook</span>, <span class="vr">deleteBook</span> };
+<span class="cm">// app.js does: const bookController = require("./controllers/bookController")
+// Then: app.get("/books", bookController.getAllBooks)</span></pre>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 10: JOI VALIDATION -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s10" class="sh c2">
+        🛡️ 10 · JOI VALIDATION MIDDLEWARE — Complete Explanation
+      </div>
+      <div class="card">
+        <pre><span class="kw">const</span> <span class="vr">Joi</span> = <span class="fn">require</span>(<span class="st">"joi"</span>);
+<span class="cm">// npm install joi
+// Joi = schema-based validation library
+// You define what valid data LOOKS LIKE (schema), Joi checks actual data against it</span>
+
+<span class="cm">// ── SCHEMA DEFINITION ────────────────────────────────────────────────────</span>
+<span class="kw">const</span> <span class="vr">bookSchema</span> = <span class="vr">Joi</span>.<span class="fn">object</span>({
+  <span class="cm">// Joi.object() = validates a JS object (matches req.body shape)</span>
+
+  <span class="prop">title</span>: <span class="vr">Joi</span>.<span class="fn">string</span>()         <span class="cm">// must be a JavaScript string type</span>
+    .<span class="fn">min</span>(<span class="nm">1</span>)                   <span class="cm">// at least 1 character long</span>
+    .<span class="fn">max</span>(<span class="nm">50</span>)                  <span class="cm">// max 50 chars — matches VARCHAR(50) in DB</span>
+    .<span class="fn">required</span>()               <span class="cm">// key must be present in req.body</span>
+    .<span class="fn">messages</span>({               <span class="cm">// override default Joi error messages</span>
+      <span class="st">"string.base"</span>:  <span class="st">"Title must be a string"</span>,         <span class="cm">// non-string given</span>
+      <span class="st">"string.empty"</span>: <span class="st">"Title cannot be empty"</span>,          <span class="cm">// empty string ""</span>
+      <span class="st">"string.min"</span>:   <span class="st">"Title must be at least 1 character long"</span>,
+      <span class="st">"string.max"</span>:   <span class="st">"Title cannot exceed 50 characters"</span>,
+      <span class="st">"any.required"</span>: <span class="st">"Title is required"</span>,              <span class="cm">// key missing entirely</span>
+    }),
+
+  <span class="prop">author</span>: <span class="vr">Joi</span>.<span class="fn">string</span>().<span class="fn">min</span>(<span class="nm">1</span>).<span class="fn">max</span>(<span class="nm">50</span>).<span class="fn">required</span>().<span class="fn">messages</span>({
+    <span class="st">"string.base"</span>:  <span class="st">"Author must be a string"</span>,
+    <span class="st">"string.empty"</span>: <span class="st">"Author cannot be empty"</span>,
+    <span class="st">"string.min"</span>:   <span class="st">"Author must be at least 1 character long"</span>,
+    <span class="st">"string.max"</span>:   <span class="st">"Author cannot exceed 50 characters"</span>,
+    <span class="st">"any.required"</span>: <span class="st">"Author is required"</span>,
+  }),
+});
+
+<span class="cm">// ── validateBook MIDDLEWARE ───────────────────────────────────────────────</span>
+<span class="kw">function</span> <span class="fn">validateBook</span>(<span class="vr">req</span>, <span class="vr">res</span>, <span class="vr">next</span>) {
+  <span class="cm">// MUST have 3 params: req, res, next — this is what makes it "middleware"
+  // Express identifies it as middleware by the 3-arg signature</span>
+
+  <span class="kw">const</span> { <span class="vr">error</span> } = <span class="vr">bookSchema</span>.<span class="fn">validate</span>(<span class="vr">req</span>.<span class="vr">body</span>, { <span class="prop">abortEarly</span>: <span class="kw">false</span> });
+  <span class="cm">// .validate(data, options) → returns { error, value }
+  // We destructure only 'error' — if validation passed, error is undefined
+  //
+  // abortEarly: false → collect ALL validation errors, not just the first
+  // abortEarly: true (default) → stop at first error, return only that one
+  // abortEarly: false is better UX — user sees all problems at once</span>
+
+  <span class="kw">if</span> (<span class="vr">error</span>) {
+    <span class="cm">// error.details = array of validation error objects
+    // Each has: { message: "...", path: ["title"], type: "string.min" }
+    // We extract just the message strings and join them</span>
+    <span class="kw">const</span> <span class="vr">errorMessage</span> = <span class="vr">error</span>.<span class="vr">details</span>
+      .<span class="fn">map</span>(<span class="vr">detail</span> => <span class="vr">detail</span>.<span class="vr">message</span>) <span class="cm">// extract message from each error</span>
+      .<span class="fn">join</span>(<span class="st">", "</span>);                     <span class="cm">// combine: "Title required, Author required"</span>
+    <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">400</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="vr">errorMessage</span> });
+    <span class="cm">// return stops execution — controller never runs for invalid data</span>
+  }
+
+  <span class="fn">next</span>(); <span class="cm">// validation PASSED → call next(), which runs the controller function</span>
+}
+
+<span class="cm">// ── validateBookId MIDDLEWARE ─────────────────────────────────────────────</span>
+<span class="kw">function</span> <span class="fn">validateBookId</span>(<span class="vr">req</span>, <span class="vr">res</span>, <span class="vr">next</span>) {
+  <span class="kw">const</span> <span class="vr">id</span> = <span class="fn">parseInt</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);
+  <span class="cm">// req.params.id is always a STRING from URL
+  // parseInt("5") → 5; parseInt("abc") → NaN; parseInt("5.9") → 5</span>
+
+  <span class="kw">if</span> (<span class="fn">isNaN</span>(<span class="vr">id</span>) || <span class="vr">id</span> <= <span class="nm">0</span>) {
+    <span class="cm">// isNaN(NaN) → true (not a number)
+    // id <= 0: negative numbers or 0 are invalid DB ids</span>
+    <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">400</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Invalid book ID. ID must be a positive number"</span> });
+  }
+  <span class="fn">next</span>(); <span class="cm">// id is valid → pass to controller</span>
+}
+
+<span class="kw">module</span>.<span class="vr">exports</span> = { <span class="vr">validateBook</span>, <span class="vr">validateBookId</span> };
+<span class="cm">// app.js: const { validateBook, validateBookId } = require("./middlewares/bookValidation");</span></pre>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 11: FRONTEND (P05) -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s11" class="sh c5">
+        🖥️ 11 · FRONTEND VIEW LAYER — Practical 05
+      </div>
+      <div class="g2">
+        <div class="card">
+          <h3 class="c5">express.static — how it works</h3>
+          <pre><span class="cm">// app.js</span>
+<span class="kw">const</span> <span class="vr">path</span> = <span class="fn">require</span>(<span class="st">"path"</span>);
+<span class="cm">// Built-in Node module — no npm install needed</span>
+
+<span class="vr">app</span>.<span class="fn">use</span>(<span class="vr">express</span>.<span class="fn">static</span>(<span class="vr">path</span>.<span class="fn">join</span>(<span class="vr">__dirname</span>, <span class="st">"public"</span>)));
+<span class="cm">// __dirname = absolute path of app.js, e.g. "C:/projects/books-api-mvc-db"
+// path.join(a, b) = "C:/projects/books-api-mvc-db/public" (handles OS slashes)
+// express.static serves files from that directory at root URL:
+//   GET /        → looks for public/index.html
+//   GET /index.html → serves public/index.html
+//   GET /script.js  → serves public/script.js
+//   GET /create.html → serves public/create.html
+// Returns 404 if file not found in public/
+// Must be placed BEFORE API routes</span>
+
+<span class="cm">// Why path.join vs string concatenation?</span>
+<span class="cm">// __dirname + "/public" → might break on Windows (\\ vs /)</span>
+<span class="cm">// path.join handles separators for current OS automatically</span></pre>
+        </div>
+        <div class="card">
+          <h3 class="c5">fetch() API — complete patterns</h3>
+          <pre><span class="kw">const</span> <span class="vr">apiBaseUrl</span> = <span class="st">"http://localhost:3000"</span>;
+
+<span class="cm">// ── GET (no body, no Content-Type header needed) ────</span>
+<span class="kw">const</span> <span class="vr">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">`<span class="vr">${apiBaseUrl}</span>/books`</span>);
+<span class="cm">// fetch() defaults to GET</span>
+<span class="kw">if</span> (!<span class="vr">response</span>.<span class="vr">ok</span>) <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="st">`HTTP error: <span class="vr">${response.status}</span>`</span>);
+<span class="cm">// response.ok = true if status 200-299</span>
+<span class="kw">const</span> <span class="vr">books</span> = <span class="kw">await</span> <span class="vr">response</span>.<span class="fn">json</span>();
+<span class="cm">// .json() parses response body string into JS object/array</span>
+
+<span class="cm">// ── POST (JSON body) ───────────────────────────────</span>
+<span class="kw">const</span> <span class="vr">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">`<span class="vr">${apiBaseUrl}</span>/books`</span>, {
+  <span class="prop">method</span>:  <span class="st">"POST"</span>,
+  <span class="prop">headers</span>: { <span class="st">"Content-Type"</span>: <span class="st">"application/json"</span> },
+  <span class="cm">// MUST include — tells Express body is JSON → enables express.json() parsing</span>
+  <span class="prop">body</span>:    <span class="vr">JSON</span>.<span class="fn">stringify</span>({ <span class="prop">title</span>: <span class="st">"Dune"</span>, <span class="prop">author</span>: <span class="st">"Herbert"</span> }),
+  <span class="cm">// JSON.stringify() converts JS object to string for transport</span>
+});
+<span class="kw">if</span> (<span class="vr">response</span>.<span class="vr">status</span> === <span class="nm">201</span>) { <span class="kw">const</span> <span class="vr">book</span> = <span class="kw">await</span> <span class="vr">response</span>.<span class="fn">json</span>(); }
+
+<span class="cm">// ── PUT (JSON body + :id in URL) ───────────────────</span>
+<span class="kw">const</span> <span class="vr">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">`<span class="vr">${apiBaseUrl}</span>/books/<span class="vr">${bookId}</span>`</span>, {
+  <span class="prop">method</span>:  <span class="st">"PUT"</span>,
+  <span class="prop">headers</span>: { <span class="st">"Content-Type"</span>: <span class="st">"application/json"</span> },
+  <span class="prop">body</span>:    <span class="vr">JSON</span>.<span class="fn">stringify</span>({ <span class="prop">title</span>: <span class="vr">editTitleInput</span>.<span class="vr">value</span>, <span class="prop">author</span>: <span class="vr">editAuthorInput</span>.<span class="vr">value</span> }),
+});
+
+<span class="cm">// ── DELETE (no body) ──────────────────────────────</span>
+<span class="kw">const</span> <span class="vr">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">`<span class="vr">${apiBaseUrl}</span>/books/<span class="vr">${bookId}</span>`</span>, {
+  <span class="prop">method</span>: <span class="st">"DELETE"</span>
+});
+<span class="kw">if</span> (<span class="vr">response</span>.<span class="vr">status</span> === <span class="nm">204</span>) { <span class="cm">/* success, no body */</span> }</pre>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="c5">
+          create-script.js — form submit with POST (P05 pattern)
+        </h3>
+        <pre><span class="kw">const</span> <span class="vr">createBookForm</span> = <span class="vr">document</span>.<span class="fn">getElementById</span>(<span class="st">"createBookForm"</span>);
+<span class="kw">const</span> <span class="vr">messageDiv</span>     = <span class="vr">document</span>.<span class="fn">getElementById</span>(<span class="st">"message"</span>);
+<span class="kw">const</span> <span class="vr">apiBaseUrl</span>     = <span class="st">"http://localhost:3000"</span>;
+
+<span class="vr">createBookForm</span>.<span class="fn">addEventListener</span>(<span class="st">"submit"</span>, <span class="kw">async</span> (<span class="vr">event</span>) => {
+  <span class="vr">event</span>.<span class="fn">preventDefault</span>();
+  <span class="cm">// CRITICAL: stops browser's default form submit (which reloads page)
+  // Allows our JS to handle it with fetch() instead</span>
+
+  <span class="vr">messageDiv</span>.<span class="vr">textContent</span> = <span class="st">""</span>; <span class="cm">// clear previous messages</span>
+
+  <span class="kw">const</span> <span class="vr">newBookData</span> = {
+    <span class="prop">title</span>:  <span class="vr">document</span>.<span class="fn">getElementById</span>(<span class="st">"title"</span>).<span class="vr">value</span>,
+    <span class="prop">author</span>: <span class="vr">document</span>.<span class="fn">getElementById</span>(<span class="st">"author"</span>).<span class="vr">value</span>,
+  };
+
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">response</span> = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="st">`<span class="vr">${apiBaseUrl}</span>/books`</span>, {
+      <span class="prop">method</span>:  <span class="st">"POST"</span>,
+      <span class="prop">headers</span>: { <span class="st">"Content-Type"</span>: <span class="st">"application/json"</span> },
+      <span class="prop">body</span>:    <span class="vr">JSON</span>.<span class="fn">stringify</span>(<span class="vr">newBookData</span>),
+    });
+
+    <span class="kw">const</span> <span class="vr">responseBody</span> = <span class="kw">await</span> <span class="vr">response</span>.<span class="fn">json</span>();
+
+    <span class="kw">if</span> (<span class="vr">response</span>.<span class="vr">status</span> === <span class="nm">201</span>) {
+      <span class="vr">messageDiv</span>.<span class="vr">textContent</span>  = <span class="st">`Book created! ID: <span class="vr">${responseBody.id}</span>`</span>;
+      <span class="vr">messageDiv</span>.<span class="vr">style</span>.<span class="vr">color</span>  = <span class="st">"green"</span>;
+      <span class="vr">createBookForm</span>.<span class="fn">reset</span>();  <span class="cm">// clear the form inputs after success</span>
+    } <span class="kw">else if</span> (<span class="vr">response</span>.<span class="vr">status</span> === <span class="nm">400</span>) {
+      <span class="vr">messageDiv</span>.<span class="vr">textContent</span>  = <span class="st">`Validation Error: <span class="vr">${responseBody.error}</span>`</span>;
+      <span class="vr">messageDiv</span>.<span class="vr">style</span>.<span class="vr">color</span>  = <span class="st">"red"</span>;
+    } <span class="kw">else</span> {
+      <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="st">`Error: <span class="vr">${response.status}</span>`</span>);
+    }
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Error creating book:"</span>, <span class="vr">error</span>);
+    <span class="vr">messageDiv</span>.<span class="vr">textContent</span> = <span class="st">`Failed: <span class="vr">${error.message}</span>`</span>;
+    <span class="vr">messageDiv</span>.<span class="vr">style</span>.<span class="vr">color</span> = <span class="st">"red"</span>;
+  }
+});</pre>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 12: userModel.js -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s12" class="sh c6">👥 12 · userModel.js — Complete (P06)</div>
+      <div class="card">
+        <pre><span class="kw">const</span> <span class="vr">sql</span>      = <span class="fn">require</span>(<span class="st">"mssql"</span>);
+<span class="kw">const</span> <span class="vr">dbConfig</span> = <span class="fn">require</span>(<span class="st">"../dbConfig"</span>);
+
+<span class="cm">// createUser, getAllUsers, getUserById, updateUser, deleteUser follow same pattern as bookModel</span>
+
+<span class="kw">async function</span> <span class="fn">getAllUsers</span>() {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">request</span>().<span class="fn">query</span>(<span class="st">"SELECT * FROM Users"</span>);
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">recordset</span>;
+  } <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="kw">throw</span> <span class="vr">err</span>; }
+  <span class="kw">finally</span> { <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} } }
+}
+
+<span class="kw">async function</span> <span class="fn">getUserById</span>(<span class="vr">id</span>) {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>, <span class="vr">id</span>);
+    <span class="kw">const</span> <span class="vr">result</span>  = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="st">"SELECT * FROM Users WHERE id = @id"</span>);
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">recordset</span>.<span class="vr">length</span> === <span class="nm">0</span> ? <span class="kw">null</span> : <span class="vr">result</span>.<span class="vr">recordset</span>[<span class="nm">0</span>];
+  } <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="kw">throw</span> <span class="vr">err</span>; }
+  <span class="kw">finally</span> { <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} } }
+}
+
+<span class="kw">async function</span> <span class="fn">createUser</span>(<span class="vr">userData</span>) {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span> = <span class="st">`INSERT INTO Users (username, email) VALUES (@username, @email);
+                   SELECT SCOPE_IDENTITY() AS id;`</span>;
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"username"</span>, <span class="vr">userData</span>.<span class="vr">username</span>);
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"email"</span>,    <span class="vr">userData</span>.<span class="vr">email</span>);
+    <span class="kw">const</span> <span class="vr">result</span>  = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="vr">query</span>);
+    <span class="kw">const</span> <span class="vr">newId</span>   = <span class="vr">result</span>.<span class="vr">recordset</span>[<span class="nm">0</span>].<span class="vr">id</span>;
+    <span class="kw">return await</span> <span class="fn">getUserById</span>(<span class="vr">newId</span>);
+  } <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="kw">throw</span> <span class="vr">err</span>; }
+  <span class="kw">finally</span> { <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} } }
+}
+
+<span class="kw">async function</span> <span class="fn">updateUser</span>(<span class="vr">id</span>, <span class="vr">userData</span>) {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>,       <span class="vr">id</span>);
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"username"</span>, <span class="vr">userData</span>.<span class="vr">username</span>);
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"email"</span>,    <span class="vr">userData</span>.<span class="vr">email</span>);
+    <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="st">"UPDATE Users SET username=@username, email=@email WHERE id=@id"</span>);
+    <span class="kw">return await</span> <span class="fn">getUserById</span>(<span class="vr">id</span>);
+  } <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="kw">throw</span> <span class="vr">err</span>; }
+  <span class="kw">finally</span> { <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} } }
+}
+
+<span class="kw">async function</span> <span class="fn">deleteUser</span>(<span class="vr">id</span>) {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>, <span class="vr">id</span>);
+    <span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="st">"DELETE FROM Users WHERE id = @id"</span>);
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">rowsAffected</span>[<span class="nm">0</span>] > <span class="nm">0</span>;
+  } <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="kw">throw</span> <span class="vr">err</span>; }
+  <span class="kw">finally</span> { <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} } }
+}
+
+<span class="cm">// ── SEARCH (LIKE query) ────────────────────────────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">searchUsers</span>(<span class="vr">searchTerm</span>) {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span> = <span class="st">`
+      SELECT * FROM Users
+      WHERE username LIKE '%' + @searchTerm + '%'
+         OR email    LIKE '%' + @searchTerm + '%'
+    `</span>;
+    <span class="cm">// LIKE '%' + @searchTerm + '%':
+    //   % = wildcard matching any characters
+    //   'user' matches 'user1', 'myuser', 'superuser'
+    //   Concatenation done in SQL: '%' + value + '%'
+    // OR: match in username OR email — both checked
+    // @searchTerm = parameterized — prevents SQL injection in LIKE too!</span>
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"searchTerm"</span>, <span class="vr">sql</span>.<span class="vr">NVarChar</span>, <span class="vr">searchTerm</span>);
+    <span class="cm">// Explicitly typed as NVarChar (Unicode string) — recommended for LIKE queries</span>
+    <span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="vr">query</span>);
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">recordset</span>;
+  } <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Error in searchUsers:"</span>, <span class="vr">err</span>); <span class="kw">throw</span> <span class="vr">err</span>; }
+  <span class="kw">finally</span> { <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} } }
+}
+
+<span class="cm">// ── GET USERS WITH BOOKS (LEFT JOIN + grouping) ────────────────────────────</span>
+<span class="kw">async function</span> <span class="fn">getUsersWithBooks</span>() {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span> = <span class="st">`
+      SELECT u.id    AS user_id, u.username, u.email,
+             b.id    AS book_id, b.title,    b.author
+      FROM   Users u
+      LEFT JOIN UserBooks ub ON ub.user_id = u.id
+      LEFT JOIN Books     b  ON ub.book_id = b.id
+      ORDER BY u.username;
+    `</span>;
+    <span class="cm">// LEFT JOIN Users → UserBooks: keeps users with 0 books (book cols = NULL)
+    // LEFT JOIN UserBooks → Books: gets book details for each UserBooks row
+    // Without LEFT JOIN (using INNER JOIN): users with 0 books would be excluded
+    // AS aliases: u.id → user_id, b.id → book_id (avoid column name collision)
+    // Result: flat rows, one per user-book combo
+    //   user_id | username | email             | book_id | title
+    //   1       | user1    | user1@example.com | 1       | Dune
+    //   1       | user1    | user1@example.com | 2       | LOTR
+    //   2       | user2    | user2@example.com | NULL    | NULL  ← user with 0 books</span>
+
+    <span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">request</span>().<span class="fn">query</span>(<span class="vr">query</span>);
+
+    <span class="kw">const</span> <span class="vr">usersWithBooks</span> = {};  <span class="cm">// keyed by user_id for O(1) lookup</span>
+    <span class="kw">for</span> (<span class="kw">const</span> <span class="vr">row</span> <span class="kw">of</span> <span class="vr">result</span>.<span class="vr">recordset</span>) {
+      <span class="kw">const</span> <span class="vr">userId</span> = <span class="vr">row</span>.<span class="vr">user_id</span>;
+      <span class="kw">if</span> (!<span class="vr">usersWithBooks</span>[<span class="vr">userId</span>]) {
+        <span class="cm">// First row for this user — initialize user object</span>
+        <span class="vr">usersWithBooks</span>[<span class="vr">userId</span>] = {
+          <span class="prop">id</span>:       <span class="vr">userId</span>,
+          <span class="prop">username</span>: <span class="vr">row</span>.<span class="vr">username</span>,
+          <span class="prop">email</span>:    <span class="vr">row</span>.<span class="vr">email</span>,
+          <span class="prop">books</span>:    [],   <span class="cm">// empty array — books added below</span>
+        };
+      }
+      <span class="kw">if</span> (<span class="vr">row</span>.<span class="vr">book_id</span> !== <span class="kw">null</span>) {  <span class="cm">// null = user has no books (LEFT JOIN)</span>
+        <span class="vr">usersWithBooks</span>[<span class="vr">userId</span>].<span class="vr">books</span>.<span class="fn">push</span>({
+          <span class="prop">id</span>:     <span class="vr">row</span>.<span class="vr">book_id</span>,
+          <span class="prop">title</span>:  <span class="vr">row</span>.<span class="vr">title</span>,
+          <span class="prop">author</span>: <span class="vr">row</span>.<span class="vr">author</span>,
+        });
+      }
+    }
+    <span class="kw">return</span> <span class="vr">Object</span>.<span class="fn">values</span>(<span class="vr">usersWithBooks</span>);
+    <span class="cm">// Object.values() converts { 1: {...}, 2: {...} } → [{...}, {...}]
+    // Returns an array of user objects, each with nested books array</span>
+  } <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Error in getUsersWithBooks:"</span>, <span class="vr">err</span>); <span class="kw">throw</span> <span class="vr">err</span>; }
+  <span class="kw">finally</span> { <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} } }
+}
+
+<span class="kw">module</span>.<span class="vr">exports</span> = {
+  <span class="vr">getAllUsers</span>, <span class="vr">getUserById</span>, <span class="vr">createUser</span>, <span class="vr">updateUser</span>, <span class="vr">deleteUser</span>,
+  <span class="vr">searchUsers</span>, <span class="vr">getUsersWithBooks</span>
+};</pre>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 13: userController -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s13" class="sh c6">
+        🎮 13 · userController.js — Complete (P06)
+      </div>
+      <div class="card">
+        <pre><span class="kw">const</span> <span class="vr">User</span> = <span class="fn">require</span>(<span class="st">"../models/userModel"</span>);
+<span class="cm">// Note: variable named "User" (capital) — matches P06 practical naming convention</span>
+
+<span class="kw">async function</span> <span class="fn">createUser</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">newUser</span> = <span class="kw">await</span> <span class="vr">User</span>.<span class="fn">createUser</span>(<span class="vr">req</span>.<span class="vr">body</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">201</span>).<span class="fn">json</span>(<span class="vr">newUser</span>);
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error creating user"</span> });
+  }
+}
+
+<span class="kw">async function</span> <span class="fn">getAllUsers</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">users</span> = <span class="kw">await</span> <span class="vr">User</span>.<span class="fn">getAllUsers</span>();
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">users</span>);
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error retrieving users"</span> });
+  }
+}
+
+<span class="kw">async function</span> <span class="fn">getUserById</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">id</span>   = <span class="fn">parseInt</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);
+    <span class="kw">const</span> <span class="vr">user</span> = <span class="kw">await</span> <span class="vr">User</span>.<span class="fn">getUserById</span>(<span class="vr">id</span>);
+    <span class="kw">if</span> (!<span class="vr">user</span>) <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"User not found"</span> });
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">user</span>);
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error retrieving user"</span> });
+  }
+}
+
+<span class="kw">async function</span> <span class="fn">updateUser</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">id</span>          = <span class="fn">parseInt</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);
+    <span class="kw">const</span> <span class="vr">updatedUser</span> = <span class="kw">await</span> <span class="vr">User</span>.<span class="fn">updateUser</span>(<span class="vr">id</span>, <span class="vr">req</span>.<span class="vr">body</span>);
+    <span class="kw">if</span> (!<span class="vr">updatedUser</span>) <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"User not found"</span> });
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">updatedUser</span>);
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error updating user"</span> });
+  }
+}
+
+<span class="kw">async function</span> <span class="fn">deleteUser</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">id</span>      = <span class="fn">parseInt</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);
+    <span class="kw">const</span> <span class="vr">success</span> = <span class="kw">await</span> <span class="vr">User</span>.<span class="fn">deleteUser</span>(<span class="vr">id</span>);
+    <span class="kw">if</span> (!<span class="vr">success</span>) <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"User not found"</span> });
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">204</span>).<span class="fn">send</span>();
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error deleting user"</span> });
+  }
+}
+
+<span class="kw">async function</span> <span class="fn">searchUsers</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">const</span> <span class="vr">searchTerm</span> = <span class="vr">req</span>.<span class="vr">query</span>.<span class="vr">searchTerm</span>; <span class="cm">// /users/search?searchTerm=user</span>
+  <span class="kw">if</span> (!<span class="vr">searchTerm</span>) {
+    <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">400</span>).<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">"Search term is required"</span> });
+  }
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">users</span> = <span class="kw">await</span> <span class="vr">User</span>.<span class="fn">searchUsers</span>(<span class="vr">searchTerm</span>);
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">users</span>);
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error in searchUsers:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">"Error searching users"</span> });
+  }
+}
+
+<span class="kw">async function</span> <span class="fn">getUsersWithBooks</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">users</span> = <span class="kw">await</span> <span class="vr">User</span>.<span class="fn">getUsersWithBooks</span>();
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">users</span>);
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error in getUsersWithBooks:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">message</span>: <span class="st">"Error fetching users with books"</span> });
+  }
+}
+
+<span class="kw">module</span>.<span class="vr">exports</span> = {
+  <span class="vr">createUser</span>, <span class="vr">getAllUsers</span>, <span class="vr">getUserById</span>, <span class="vr">updateUser</span>, <span class="vr">deleteUser</span>,
+  <span class="vr">searchUsers</span>, <span class="vr">getUsersWithBooks</span>
+};</pre>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 14: M:N RELATIONSHIPS -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s14" class="sh c3">🔗 14 · MANY-TO-MANY RELATIONSHIPS (P06)</div>
+      <div class="g2">
+        <div>
+          <div class="card">
+            <h3 class="c3">M:N Relationship Theory</h3>
+            <div class="hl g">
+              <b>Many-to-Many (M:N):</b> A User can have many Books. A Book can
+              be owned by many Users. Neither side can store the other's FK
+              without duplication.
+            </div>
+            <div class="hl b" style="margin-top: 8px">
+              <b>Rule:</b> For each M:N relationship, create a JOIN TABLE
+              containing the PKs of both entities as FKs. The composite PK =
+              (FK1 + FK2).
+            </div>
+            <div class="hl y" style="margin-top: 8px">
+              <b>Pattern:</b> S(<u>a1</u>, <u>b1</u>, optional_attributes)<br />
+              where a1 = FK to table A, b1 = FK to table B<br />
+              Underlined = composite primary key
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="c3">SQL Schema — all 3 tables</h3>
+            <pre><span class="cm">-- 1. Main table A</span>
+<span class="kw">CREATE TABLE</span> Users (
+  id       <span class="vr">INT</span> <span class="kw">PRIMARY KEY IDENTITY</span>,
+  username <span class="vr">VARCHAR</span>(<span class="nm">50</span>)  <span class="kw">NOT NULL UNIQUE</span>,
+  email    <span class="vr">VARCHAR</span>(<span class="nm">100</span>) <span class="kw">NOT NULL UNIQUE</span>
+);
+
+<span class="cm">-- 2. Main table B</span>
+<span class="kw">CREATE TABLE</span> Books (
+  id     <span class="vr">INT</span> <span class="fn">IDENTITY</span>(<span class="nm">1</span>,<span class="nm">1</span>) <span class="kw">PRIMARY KEY</span>,
+  title  <span class="vr">VARCHAR</span>(<span class="nm">50</span>) <span class="kw">NOT NULL UNIQUE</span>,
+  author <span class="vr">VARCHAR</span>(<span class="nm">50</span>) <span class="kw">NOT NULL</span>
+);
+
+<span class="cm">-- 3. Join/Bridge/Associative table</span>
+<span class="kw">CREATE TABLE</span> UserBooks (
+  id      <span class="vr">INT</span> <span class="kw">PRIMARY KEY IDENTITY</span>,
+  user_id <span class="vr">INT</span> <span class="kw">FOREIGN KEY REFERENCES</span> Users(id),
+  <span class="cm">-- user_id FK: links to Users table primary key</span>
+  book_id <span class="vr">INT</span> <span class="kw">FOREIGN KEY REFERENCES</span> Books(id)
+  <span class="cm">-- book_id FK: links to Books table primary key</span>
+);
+
+<span class="cm">-- Insert relationship: User 1 has Books 1 and 2</span>
+<span class="kw">INSERT INTO</span> UserBooks (user_id, book_id) <span class="kw">VALUES</span> (<span class="nm">1</span>,<span class="nm">1</span>),(<span class="nm">1</span>,<span class="nm">2</span>),(<span class="nm">2</span>,<span class="nm">3</span>);</pre>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <h3 class="c3">LEFT JOIN vs INNER JOIN</h3>
+            <table>
+              <tr>
+                <th>JOIN Type</th>
+                <th>Result</th>
+                <th>When to use</th>
+              </tr>
+              <tr>
+                <td>INNER JOIN</td>
+                <td>Only rows with matches in BOTH tables</td>
+                <td>When you only want users WITH books</td>
+              </tr>
+              <tr>
+                <td>LEFT JOIN</td>
+                <td>
+                  ALL rows from left table + matching from right (NULL if no
+                  match)
+                </td>
+                <td>When you want ALL users, even those with 0 books</td>
+              </tr>
+              <tr>
+                <td>RIGHT JOIN</td>
+                <td>ALL rows from right table + matching from left</td>
+                <td>All books even without users</td>
+              </tr>
+            </table>
+            <div class="hl g" style="margin-top: 8px">
+              <b>P06 uses LEFT JOIN</b> so users with 0 books still appear
+              (book_id = null). The JS code checks
+              <span class="ic">if (row.book_id !== null)</span> before pushing
+              to the books array.
+            </div>
+            <pre
+              style="margin-top: 8px"
+            ><span class="cm">-- Result from LEFT JOIN (flat rows):</span>
+<span class="cm">user_id | username | email             | book_id | title</span>
+<span class="cm">--------|----------|-------------------|---------|------</span>
+<span class="nm">1</span>       | user1    | user1@example.com | <span class="nm">1</span>       | Dune
+<span class="nm">1</span>       | user1    | user1@example.com | <span class="nm">2</span>       | LOTR
+<span class="nm">2</span>       | user2    | user2@example.com | <span class="kw">NULL</span>    | <span class="kw">NULL</span></pre>
+          </div>
+          <div class="card">
+            <h3 class="c3">Object.values() — why it's needed</h3>
+            <pre><span class="cm">// After the for loop, usersWithBooks is an OBJECT:</span>
+{
+  <span class="nm">1</span>: { id: <span class="nm">1</span>, username: <span class="st">"user1"</span>, books: [{...}, {...}] },
+  <span class="nm">2</span>: { id: <span class="nm">2</span>, username: <span class="st">"user2"</span>, books: [] }
+}
+
+<span class="cm">// Controller / client expects an ARRAY:
+// res.json() sends this as JSON array to frontend</span>
+<span class="vr">Object</span>.<span class="fn">values</span>(<span class="vr">usersWithBooks</span>)
+<span class="cm">// → [{ id:1, username:"user1", books:[...] }, { id:2, ... }]</span>
+
+<span class="cm">// Why object keyed by userId first?
+// Fast O(1) lookup: "have I seen this user before?"
+// usersWithBooks[userId] check is instant vs .find() on array each row</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 15: HTTP DEEP DIVE -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s15" class="sh c1">
+        🌐 15 · HTTP DEEP DIVE — async/await, Node.js, API concepts
+      </div>
+      <div class="g3">
+        <div class="card">
+          <h3 class="c1">async / await — deep explanation</h3>
+          <pre><span class="cm">// async makes function return a Promise</span>
+<span class="kw">async function</span> <span class="fn">example</span>() {
+  <span class="cm">// everything here becomes a promise chain</span>
+}
+
+<span class="cm">// await pauses THIS function until Promise resolves</span>
+<span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+<span class="cm">// Without await: would get a Promise object, not the connection
+// With await: waits for connection to open, then gives us the object
+// Node event loop is NOT blocked — other requests run during the wait</span>
+
+<span class="cm">// Promise states:</span>
+<span class="cm">// Pending    → operation in progress</span>
+<span class="cm">// Fulfilled  → operation succeeded (await gives resolved value)</span>
+<span class="cm">// Rejected   → operation failed (await throws error → caught by catch)</span></pre>
+          <div class="hl b">
+            <b>Why async for DB ops?</b> DB queries take time (network I/O). If
+            synchronous, the entire Node.js server would freeze waiting. Async =
+            other requests keep running during DB wait.
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="c1">try / catch / finally — pattern deep dive</h3>
+          <pre><span class="kw">let</span> <span class="vr">connection</span>;        <span class="cm">// ← outside so finally can see it</span>
+<span class="kw">try</span> {
+  <span class="vr">connection</span> = ...;   <span class="cm">// ← opens connection</span>
+  <span class="kw">const</span> <span class="vr">r</span> = <span class="kw">await</span> ...; <span class="cm">// ← executes query</span>
+  <span class="kw">return</span> <span class="vr">r</span>.<span class="vr">recordset</span>; <span class="cm">// ← happy path</span>
+} <span class="kw">catch</span> (<span class="vr">error</span>) {
+  <span class="vr">console</span>.<span class="fn">error</span>(<span class="vr">error</span>);
+  <span class="kw">throw</span> <span class="vr">error</span>;         <span class="cm">// re-throw → controller sends 500</span>
+} <span class="kw">finally</span> {
+  <span class="kw">if</span> (<span class="vr">connection</span>) {   <span class="cm">// guards against connect failing</span>
+    <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); }
+    <span class="kw">catch</span> (<span class="vr">e</span>) {}      <span class="cm">// ignore close errors</span>
+  }
+}
+<span class="cm">// finally ALWAYS runs — success OR failure
+// Without finally: if query throws, connection never closes → LEAK
+// Connection leak → eventually server can't make new DB connections</span></pre>
+        </div>
+        <div class="card">
+          <h3 class="c1">SQL Injection — why parameterized queries</h3>
+          <pre><span class="cm">// ❌ UNSAFE — string concatenation</span>
+<span class="kw">const</span> <span class="vr">id</span>    = <span class="st">"1; DROP TABLE Books;--"</span>; <span class="cm">// attacker input</span>
+<span class="kw">const</span> <span class="vr">query</span> = <span class="st">`SELECT * FROM Books WHERE id = <span class="vr">${id}</span>`</span>;
+<span class="cm">// Executes: SELECT * FROM Books WHERE id = 1; DROP TABLE Books;--
+// Result: Books table DELETED!</span>
+
+<span class="cm">// ✅ SAFE — parameterized query</span>
+<span class="kw">const</span> <span class="vr">query</span>   = <span class="st">"SELECT * FROM Books WHERE id = @id"</span>;
+<span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+<span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>, <span class="st">"1; DROP TABLE Books;--"</span>);
+<span class="cm">// mssql sends SQL and parameters SEPARATELY to SQL Server
+// SQL Server treats value as DATA, not as executable SQL code
+// Attacker input is harmless — just becomes a string value</span></pre>
+          <div class="hl g">
+            <b>Rule:</b> ALWAYS use
+            <span class="ic">request.input("name", value)</span> and
+            <span class="ic">@name</span> in query for ANY user-provided data.
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 16: SQL QUICK REF -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s16" class="sh c5">📊 16 · SQL QUICK REFERENCE</div>
+      <div class="g2">
+        <div class="card">
+          <h3 class="c5">All SQL used in the practicals</h3>
+          <pre><span class="cm">-- SELECT all</span>
+<span class="kw">SELECT</span> id, title, author <span class="kw">FROM</span> Books;
+
+<span class="cm">-- SELECT with WHERE (use @param in Node.js)</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> Books <span class="kw">WHERE</span> id = @id;
+
+<span class="cm">-- INSERT + get new ID</span>
+<span class="kw">INSERT INTO</span> Books (title, author) <span class="kw">VALUES</span> (@title, @author);
+<span class="kw">SELECT</span> <span class="fn">SCOPE_IDENTITY</span>() <span class="kw">AS</span> id;
+
+<span class="cm">-- UPDATE</span>
+<span class="kw">UPDATE</span> Books <span class="kw">SET</span> title = @title, author = @author <span class="kw">WHERE</span> id = @id;
+
+<span class="cm">-- DELETE</span>
+<span class="kw">DELETE FROM</span> Books <span class="kw">WHERE</span> id = @id;
+
+<span class="cm">-- LIKE search (% = any characters)</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> Users
+<span class="kw">WHERE</span> username <span class="kw">LIKE</span> <span class="st">'%'</span> + @searchTerm + <span class="st">'%'</span>
+   <span class="kw">OR</span> email    <span class="kw">LIKE</span> <span class="st">'%'</span> + @searchTerm + <span class="st">'%'</span>;
+
+<span class="cm">-- LEFT JOIN (users with books, include users with 0 books)</span>
+<span class="kw">SELECT</span> u.id <span class="kw">AS</span> user_id, u.username, u.email,
+       b.id <span class="kw">AS</span> book_id, b.title, b.author
+<span class="kw">FROM</span> Users u
+<span class="kw">LEFT JOIN</span> UserBooks ub <span class="kw">ON</span> ub.user_id = u.id
+<span class="kw">LEFT JOIN</span> Books     b  <span class="kw">ON</span> ub.book_id = b.id
+<span class="kw">ORDER BY</span> u.username;</pre>
+        </div>
+        <div class="card">
+          <h3 class="c5">SQL clauses explained</h3>
+          <table>
+            <tr>
+              <th>Clause</th>
+              <th>Purpose</th>
+            </tr>
+            <tr>
+              <td><span class="ic">IDENTITY(1,1)</span></td>
+              <td>
+                Auto-increment: starts at 1, increments by 1. SQL Server
+                generates it automatically on each INSERT.
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ic">PRIMARY KEY</span></td>
+              <td>
+                Uniquely identifies each row. Auto-indexed. Cannot be NULL.
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ic">FOREIGN KEY REFERENCES T(col)</span></td>
+              <td>
+                Enforces referential integrity — value must exist in referenced
+                table.
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ic">NOT NULL</span></td>
+              <td>Field is required — INSERT fails if omitted.</td>
+            </tr>
+            <tr>
+              <td><span class="ic">UNIQUE</span></td>
+              <td>No duplicate values allowed across rows.</td>
+            </tr>
+            <tr>
+              <td><span class="ic">VARCHAR(n)</span></td>
+              <td>Variable-length string up to n chars.</td>
+            </tr>
+            <tr>
+              <td><span class="ic">SCOPE_IDENTITY()</span></td>
+              <td>
+                Returns auto-generated ID of the most recent INSERT in current
+                scope.
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ic">LIKE '%x%'</span></td>
+              <td>
+                Pattern match: % = zero or more characters. Contains 'x'
+                anywhere in string.
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ic">LEFT JOIN</span></td>
+              <td>
+                All rows from left table + matching from right. NULL if no
+                match.
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ic">AS alias</span></td>
+              <td>
+                Rename column in results:
+                <span class="ic">u.id AS user_id</span> → accessible as
+                <span class="ic">row.user_id</span>.
+              </td>
+            </tr>
+            <tr>
+              <td><span class="ic">ORDER BY</span></td>
+              <td>Sort results. ASC (default) or DESC.</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 17: Q&A BANK -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s17" class="sh c2">
+        ❓ 17 · Q&amp;A BANK — Possible Exam Questions with Model Answers
+      </div>
+
+      <div class="card" style="margin-bottom: 16px">
+        <h3 class="c2" style="font-size: 13px">THEORY QUESTIONS (Q1 type)</h3>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What is async/await and why is it used for database operations in
+          Node.js?
+        </div>
+        <div class="qa-a">
+          The <code>async</code> keyword makes a function return a Promise and
+          enables the use of <code>await</code> inside it. The
+          <code>await</code> keyword pauses the execution of the surrounding
+          async function until the awaited Promise resolves, then resumes with
+          the resolved value. Crucially, this does NOT block the Node.js event
+          loop — while the async function waits for the database to respond,
+          Node.js continues handling other incoming requests.<br /><br />
+          For database operations specifically, each query involves network I/O
+          which can take tens to hundreds of milliseconds. If these were
+          synchronous (blocking), the entire Node.js server would freeze for
+          every single request, making it unable to serve any other user. Using
+          async/await allows hundreds of concurrent users to have their requests
+          processed efficiently on Node.js's single thread.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Why is dbConfig required in bookModel.js? What does it contain and
+          why is it needed?
+        </div>
+        <div class="qa-a">
+          <code>const dbConfig = require("../dbConfig")</code> is needed because
+          the line <code>await sql.connect(dbConfig)</code> requires a
+          configuration object containing the database connection details —
+          specifically: <code>user</code> (SQL Server login username),
+          <code>password</code>, <code>server</code> (hostname),
+          <code>database</code> (database name),
+          <code>trustServerCertificate</code>, and <code>options.port</code>.
+          Without importing dbConfig, the model has no credentials and
+          <code>sql.connect()</code> would not know which SQL Server to connect
+          to, what credentials to use, or which database to open. The model
+          would fail to establish any connection.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What is the purpose of the try/catch/finally block in model
+          functions? Why is 'finally' specifically needed?
+        </div>
+        <div class="qa-a">
+          The <code>try</code> block contains the core database logic. If any
+          <code>await</code> call throws an error (connection failure, query
+          error, etc.), the <code>catch</code> block handles it by logging the
+          error and re-throwing it so the controller can send a 500 response to
+          the client.<br /><br />
+          The <code>finally</code> block is critical because it runs regardless
+          of whether the try block succeeded or the catch block ran. Its purpose
+          is to always close the database connection
+          (<code>connection.close()</code>). Without finally, if an error occurs
+          inside the try block before the close() call, the connection is never
+          closed — it "leaks." Over time, leaked connections accumulate until
+          the database's connection limit is reached, and the server can no
+          longer open new connections. The <code>finally</code> block guarantees
+          cleanup in all scenarios.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What is dotenv and why is it used? What happens if dotenv.config()
+          is not called?
+        </div>
+        <div class="qa-a">
+          dotenv is an npm package that reads a <code>.env</code> file and loads
+          each <code>KEY=VALUE</code> line into <code>process.env</code>. This
+          allows storing sensitive configuration (database passwords, ports, API
+          keys) outside of source code, so they're never accidentally committed
+          to version control.<br /><br />
+          <code>dotenv.config()</code> must be called early in
+          <code>app.js</code> — before any code that accesses
+          <code>process.env.DB_USER</code> etc. If not called, all
+          <code>process.env.DB_*</code> values would be <code>undefined</code>,
+          causing dbConfig.js to export undefined values, and
+          <code>sql.connect()</code> would fail with authentication errors
+          because no credentials were provided.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What is the purpose of SIGINT and graceful shutdown? What happens
+          without it?
+        </div>
+        <div class="qa-a">
+          SIGINT (Signal Interrupt) is the signal sent to a process when the
+          user presses Ctrl+C in the terminal.
+          <code>process.on("SIGINT", async () => { ... })</code> registers a
+          handler that runs before the process exits.<br /><br />
+          The graceful shutdown calls <code>sql.close()</code> to close the
+          mssql connection pool, releasing all active database connections.
+          Without this, when the Node.js process is killed, any open database
+          connections are abruptly terminated — connections may be left in an
+          inconsistent state on the SQL Server side, and connection pool
+          resources are not properly released. This can cause issues like "too
+          many connections" errors when restarting the server repeatedly.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Explain the role of express.json() and express.urlencoded(). What
+          is req.body without them?
+        </div>
+        <div class="qa-a">
+          <code>express.json()</code> is middleware that parses incoming request
+          bodies with <code>Content-Type: application/json</code>. When a client
+          sends a JSON string in the body (e.g., from <code>fetch()</code> with
+          <code>JSON.stringify()</code>), this middleware converts it to a
+          JavaScript object and makes it available as
+          <code>req.body</code>.<br /><br />
+          <code>express.urlencoded()</code> does the same for
+          <code>application/x-www-form-urlencoded</code> data, which is what
+          HTML forms submit by default.<br /><br />
+          Without these middlewares, <code>req.body</code> would be
+          <code>undefined</code> — Express does not parse request bodies
+          automatically. Any code trying to access
+          <code>req.body.title</code> would get a TypeError trying to read
+          property 'title' of undefined.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Why must specific routes like /users/search be defined BEFORE
+          /users/:id in app.js?
+        </div>
+        <div class="qa-a">
+          Express matches routes in the order they are defined.
+          <code>:id</code> is a URL parameter wildcard — it matches ANY string
+          segment. If <code>GET /users/:id</code> is defined first, a request to
+          <code>GET /users/search</code> would match it with
+          <code>req.params.id = "search"</code>, calling
+          <code>getUserById</code> with id = "search" instead of
+          <code>searchUsers</code>. By placing <code>/users/search</code> before
+          <code>/users/:id</code>, Express matches the literal string "search"
+          first, calling the correct handler. The <code>:id</code> route only
+          fires if no earlier route matched.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What is SQL injection and how do parameterized queries prevent it?
+        </div>
+        <div class="qa-a">
+          SQL injection is an attack where malicious SQL code is embedded in
+          user input data. For example, if an id field contains
+          <code>"1; DROP TABLE Books;--"</code> and is concatenated directly
+          into a SQL string, the database executes both the SELECT and the DROP
+          TABLE commands, potentially destroying data or exposing sensitive
+          information.<br /><br />
+          Parameterized queries prevent this by keeping SQL code and user data
+          strictly separate. The query contains a placeholder
+          (<code>@id</code>), and <code>request.input("id", value)</code> sends
+          the value as a separate parameter. The database driver (mssql) ensures
+          the value is treated as pure data — it can never be interpreted as SQL
+          code, regardless of what characters it contains. This makes injection
+          attacks impossible.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What does module.exports do, and why is it needed?
+        </div>
+        <div class="qa-a">
+          In Node.js, each file is a separate module with its own scope —
+          variables and functions defined in one file are not automatically
+          available in others. <code>module.exports</code> is the mechanism to
+          explicitly share values (functions, objects, classes) between
+          files.<br /><br />
+          What you assign to <code>module.exports</code> is what the importing
+          file gets when it calls <code>require("./path/to/file")</code>. For
+          example, assigning
+          <code>module.exports = { getAllBooks, createBook }</code> in
+          bookModel.js means
+          <code>const bookModel = require("../models/bookModel")</code> in
+          bookController.js gives access to
+          <code>bookModel.getAllBooks()</code> and
+          <code>bookModel.createBook()</code>. Without module.exports, the MVC
+          pattern cannot work — controllers couldn't call model functions.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Explain MVC architecture. What goes in each layer and why is the
+          separation important?
+        </div>
+        <div class="qa-a">
+          <b>Model</b> contains all database interaction logic: SQL queries,
+          connection management, parameterized queries, and returning raw data.
+          It has no knowledge of HTTP requests or responses.<br /><br />
+          <b>View</b> is the frontend layer — HTML, CSS, and client-side
+          JavaScript. In P05, this is the <code>public/</code> folder served by
+          <code>express.static()</code>. It makes HTTP requests to the API and
+          renders responses for the user.<br /><br />
+          <b>Controller</b> handles HTTP requests and responses: extracts data
+          from <code>req.params</code>, <code>req.body</code>,
+          <code>req.query</code>, calls Model functions, checks results, and
+          sends responses with appropriate status codes. It never contains SQL
+          queries.<br /><br />
+          The separation matters because: (1) Database logic can be changed
+          without touching routes, (2) Model functions can be reused across
+          multiple controllers, (3) Each layer can be tested independently, (4)
+          Code is more readable since each file has one clear responsibility.
+        </div>
+      </div>
+
+      <div class="card" style="margin: 16px 0">
+        <h3 class="c2" style="font-size: 13px">
+          MIDDLEWARE QUESTIONS (Q2 type)
+        </h3>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What is middleware? How is it different from a route handler? How
+          do you use a middleware in a route?
+        </div>
+        <div class="qa-a">
+          Middleware is a function with the signature
+          <code>(req, res, next)</code> that sits between an incoming HTTP
+          request and the final route handler. It has access to the request and
+          response objects and can: execute code, modify req/res, end the
+          request-response cycle, or call <code>next()</code> to pass control to
+          the next function.<br /><br />
+          A regular route handler is <code>(req, res)</code> — no
+          <code>next</code>. A middleware is <code>(req, res, next)</code> — it
+          can chain.<br /><br />
+          To use middleware in a route, list it as an argument before the
+          controller function:
+          <code
+            >app.post("/books", validateBook, bookController.createBook)</code
+          >. Express calls <code>validateBook</code> first. If it calls
+          <code>next()</code>, then <code>createBook</code> runs. If it sends a
+          response (e.g., 400), <code>createBook</code> never runs. The order of
+          arguments is the order of execution.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What does abortEarly: false do in Joi validation? Why is it better
+          than the default?
+        </div>
+        <div class="qa-a">
+          <code>abortEarly: false</code> is an option passed to
+          <code>bookSchema.validate(req.body, { abortEarly: false })</code>. It
+          instructs Joi to continue validating all fields even after the first
+          error is found, collecting every validation failure into the
+          <code>error.details</code> array.<br /><br />
+          The default behaviour (<code>abortEarly: true</code>) stops validation
+          at the first error, returning only that one error message. This means
+          a user must fix one error, resubmit, discover the next error, resubmit
+          again, and so on.<br /><br />
+          With <code>abortEarly: false</code>, the client receives all
+          validation errors simultaneously (e.g., "Title is required, Author
+          cannot exceed 50 characters") in a single response, allowing the user
+          or frontend to fix all problems at once. This is significantly more
+          user-friendly for API consumers.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What does validateBookId middleware check and why?
+        </div>
+        <div class="qa-a">
+          <code>validateBookId</code> extracts the <code>:id</code> URL
+          parameter with <code>parseInt(req.params.id)</code> and checks two
+          conditions: (1) <code>isNaN(id)</code> — is the parsed result not a
+          number? This catches non-numeric inputs like "abc". (2)
+          <code>id <= 0</code> — negative numbers and zero are not valid
+          database IDs since SQL Server IDENTITY starts at 1.<br /><br />
+          If either condition fails, it returns a 400 Bad Request immediately,
+          stopping the request before it reaches the controller and model. This
+          prevents the model from receiving invalid input that would cause a
+          meaningless database query, and gives the client a clear, specific
+          error message rather than a cryptic 500 server error.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Write a Joi validation schema for a Food item with fields: name
+          (string, required, 1-50 chars) and calories (number, required, min 0).
+        </div>
+        <div class="qa-a">
+          <pre><span class="kw">const</span> <span class="vr">Joi</span> = <span class="fn">require</span>(<span class="st">"joi"</span>);
+
+<span class="kw">const</span> <span class="vr">foodSchema</span> = <span class="vr">Joi</span>.<span class="fn">object</span>({
+  <span class="prop">name</span>: <span class="vr">Joi</span>.<span class="fn">string</span>().<span class="fn">min</span>(<span class="nm">1</span>).<span class="fn">max</span>(<span class="nm">50</span>).<span class="fn">required</span>().<span class="fn">messages</span>({
+    <span class="st">"string.base"</span>:  <span class="st">"Name must be a string"</span>,
+    <span class="st">"string.empty"</span>: <span class="st">"Name cannot be empty"</span>,
+    <span class="st">"string.min"</span>:   <span class="st">"Name must be at least 1 character long"</span>,
+    <span class="st">"string.max"</span>:   <span class="st">"Name cannot exceed 50 characters"</span>,
+    <span class="st">"any.required"</span>: <span class="st">"Name is required"</span>,
+  }),
+  <span class="prop">calories</span>: <span class="vr">Joi</span>.<span class="fn">number</span>().<span class="fn">min</span>(<span class="nm">0</span>).<span class="fn">required</span>().<span class="fn">messages</span>({
+    <span class="st">"number.base"</span>:  <span class="st">"Calories must be a number"</span>,
+    <span class="st">"number.min"</span>:   <span class="st">"Calories must be at least 0"</span>,
+    <span class="st">"any.required"</span>: <span class="st">"Calories is required"</span>,
+  }),
+});
+
+<span class="kw">function</span> <span class="fn">validateFood</span>(<span class="vr">req</span>, <span class="vr">res</span>, <span class="vr">next</span>) {
+  <span class="kw">const</span> { <span class="vr">error</span> } = <span class="vr">foodSchema</span>.<span class="fn">validate</span>(<span class="vr">req</span>.<span class="vr">body</span>, { <span class="prop">abortEarly</span>: <span class="kw">false</span> });
+  <span class="kw">if</span> (<span class="vr">error</span>) {
+    <span class="kw">const</span> <span class="vr">msg</span> = <span class="vr">error</span>.<span class="vr">details</span>.<span class="fn">map</span>(<span class="vr">d</span> => <span class="vr">d</span>.<span class="vr">message</span>).<span class="fn">join</span>(<span class="st">", "</span>);
+    <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">400</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="vr">msg</span> });
+  }
+  <span class="fn">next</span>();
+}
+<span class="kw">module</span>.<span class="vr">exports</span> = { <span class="vr">validateFood</span> };</pre>
+        </div>
+      </div>
+
+      <div class="card" style="margin: 16px 0">
+        <h3 class="c2" style="font-size: 13px">MODEL QUESTIONS (Q3 type)</h3>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Write a model function getAllFoods() that retrieves all records
+          from a Foods table in MSSQL.
+        </div>
+        <div class="qa-a">
+          <pre><span class="kw">const</span> <span class="vr">sql</span>      = <span class="fn">require</span>(<span class="st">"mssql"</span>);
+<span class="kw">const</span> <span class="vr">dbConfig</span> = <span class="fn">require</span>(<span class="st">"../dbConfig"</span>);
+
+<span class="kw">async function</span> <span class="fn">getAllFoods</span>() {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span>  = <span class="st">"SELECT id, name, calories FROM Foods"</span>;
+    <span class="kw">const</span> <span class="vr">result</span> = <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">request</span>().<span class="fn">query</span>(<span class="vr">query</span>);
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">recordset</span>;
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Database error:"</span>, <span class="vr">error</span>);
+    <span class="kw">throw</span> <span class="vr">error</span>;
+  } <span class="kw">finally</span> {
+    <span class="kw">if</span> (<span class="vr">connection</span>) {
+      <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); }
+      <span class="kw">catch</span> (<span class="vr">err</span>) { <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Error closing connection:"</span>, <span class="vr">err</span>); }
+    }
+  }
+}
+<span class="kw">module</span>.<span class="vr">exports</span> = { <span class="vr">getAllFoods</span> };</pre>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Write a model function getFoodById(id) that returns a single food
+          or null if not found.
+        </div>
+        <div class="qa-a">
+          <pre><span class="kw">async function</span> <span class="fn">getFoodById</span>(<span class="vr">id</span>) {
+  <span class="kw">let</span> <span class="vr">connection</span>;
+  <span class="kw">try</span> {
+    <span class="vr">connection</span> = <span class="kw">await</span> <span class="vr">sql</span>.<span class="fn">connect</span>(<span class="vr">dbConfig</span>);
+    <span class="kw">const</span> <span class="vr">query</span>   = <span class="st">"SELECT id, name, calories FROM Foods WHERE id = @id"</span>;
+    <span class="kw">const</span> <span class="vr">request</span> = <span class="vr">connection</span>.<span class="fn">request</span>();
+    <span class="vr">request</span>.<span class="fn">input</span>(<span class="st">"id"</span>, <span class="vr">id</span>);   <span class="cm">// parameterized — @id bound to id value</span>
+    <span class="kw">const</span> <span class="vr">result</span>  = <span class="kw">await</span> <span class="vr">request</span>.<span class="fn">query</span>(<span class="vr">query</span>);
+    <span class="kw">if</span> (<span class="vr">result</span>.<span class="vr">recordset</span>.<span class="vr">length</span> === <span class="nm">0</span>) <span class="kw">return null</span>; <span class="cm">// not found</span>
+    <span class="kw">return</span> <span class="vr">result</span>.<span class="vr">recordset</span>[<span class="nm">0</span>];  <span class="cm">// single food object</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Database error:"</span>, <span class="vr">error</span>); <span class="kw">throw</span> <span class="vr">error</span>;
+  } <span class="kw">finally</span> {
+    <span class="kw">if</span> (<span class="vr">connection</span>) { <span class="kw">try</span> { <span class="kw">await</span> <span class="vr">connection</span>.<span class="fn">close</span>(); } <span class="kw">catch</span>(<span class="vr">e</span>){} }
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="card" style="margin: 16px 0">
+        <h3 class="c2" style="font-size: 13px">
+          CONTROLLER QUESTIONS (Q4 type)
+        </h3>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Write a controller function getAllFoods(req, res) that calls the
+          model and handles errors.
+        </div>
+        <div class="qa-a">
+          <pre><span class="kw">const</span> <span class="vr">Food</span> = <span class="fn">require</span>(<span class="st">"../models/foodModel"</span>);
+
+<span class="kw">async function</span> <span class="fn">getAllFoods</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">foods</span> = <span class="kw">await</span> <span class="vr">Food</span>.<span class="fn">getAllFoods</span>();
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">foods</span>);          <span class="cm">// 200 OK + JSON array of foods</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error retrieving foods!"</span> });
+  }
+}
+<span class="kw">module</span>.<span class="vr">exports</span> = { <span class="vr">getAllFoods</span> };</pre>
+          And in app.js:
+          <pre><span class="kw">const</span> <span class="vr">foodsController</span> = <span class="fn">require</span>(<span class="st">"./controllers/foodController"</span>);
+<span class="vr">app</span>.<span class="fn">get</span>(<span class="st">"/foods"</span>, <span class="vr">foodsController</span>.<span class="fn">getAllFoods</span>);</pre>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Write a controller for getFoodById that returns 404 if not found
+          and 500 on error.
+        </div>
+        <div class="qa-a">
+          <pre><span class="kw">async function</span> <span class="fn">getFoodById</span>(<span class="vr">req</span>, <span class="vr">res</span>) {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> <span class="vr">id</span>   = <span class="fn">parseInt</span>(<span class="vr">req</span>.<span class="vr">params</span>.<span class="vr">id</span>);  <span class="cm">// URL segment → integer</span>
+    <span class="kw">const</span> <span class="vr">food</span> = <span class="kw">await</span> <span class="vr">Food</span>.<span class="fn">getFoodById</span>(<span class="vr">id</span>);
+    <span class="kw">if</span> (!<span class="vr">food</span>) {
+      <span class="kw">return</span> <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">404</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Food not found"</span> });
+    }
+    <span class="vr">res</span>.<span class="fn">json</span>(<span class="vr">food</span>); <span class="cm">// 200 OK + food object</span>
+  } <span class="kw">catch</span> (<span class="vr">error</span>) {
+    <span class="vr">console</span>.<span class="fn">error</span>(<span class="st">"Controller error:"</span>, <span class="vr">error</span>);
+    <span class="vr">res</span>.<span class="fn">status</span>(<span class="nm">500</span>).<span class="fn">json</span>({ <span class="prop">error</span>: <span class="st">"Error retrieving food"</span> });
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: What is SCOPE_IDENTITY() and why is it used after INSERT?
+        </div>
+        <div class="qa-a">
+          When you INSERT a row into a table with an IDENTITY column
+          (auto-incrementing primary key), SQL Server generates the new ID
+          automatically — but the INSERT statement itself doesn't return it
+          directly. <code>SELECT SCOPE_IDENTITY() AS id</code> retrieves the
+          most recently generated IDENTITY value within the current scope
+          (current connection and current stored procedure).<br /><br />
+          It is used in the model's createBook/createUser functions right after
+          INSERT so we know the new record's ID. We then pass this ID to
+          <code>getBookById(newId)</code> to fetch and return the complete newly
+          created record to the client. Without SCOPE_IDENTITY(), we wouldn't
+          know which ID was assigned, and couldn't confirm the creation
+          succeeded or return the complete resource.
+        </div>
+      </div>
+
+      <div class="qa">
+        <div class="qa-q">
+          Q: Describe the LEFT JOIN used in getUsersWithBooks. What would change
+          if you used INNER JOIN instead?
+        </div>
+        <div class="qa-a">
+          The LEFT JOIN joins Users to UserBooks on
+          <code>ub.user_id = u.id</code>, then UserBooks to Books on
+          <code>ub.book_id = b.id</code>. A LEFT JOIN keeps ALL rows from the
+          left table (Users) even when there are no matching rows in the right
+          table (UserBooks). For a user with no books, <code>book_id</code>,
+          <code>title</code>, and <code>author</code> columns will be NULL in
+          those rows.<br /><br />
+          The JavaScript code handles this with
+          <code>if (row.book_id !== null)</code> — only adding a book to the
+          array when one actually exists, leaving the books array empty for
+          users with no books.<br /><br />
+          With INNER JOIN, only users who have at least one entry in UserBooks
+          would appear in the results. Users with 0 books would be completely
+          excluded from the response, which would be incorrect behavior if we
+          want to show all users regardless of whether they have books.
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════ -->
+      <!-- SECTION 18: EXAM TEMPLATES -->
+      <!-- ═══════════════════════════════════════════════ -->
+      <div id="s18" class="sh c3">
+        📝 18 · EXAM ANSWER TEMPLATES — Fill-in-the-gap ready
+      </div>
+      <div class="g2">
+        <div class="card">
+          <h3 class="c3">Template: write ANY model function</h3>
+          <div class="hl g">
+            Checklist — every model function needs ALL of these:
+          </div>
+          <table style="margin-top: 8px">
+            <tr>
+              <th>#</th>
+              <th>Element</th>
+              <th>Code</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Imports at top</td>
+              <td>
+                <span class="ic"
+                  >const sql = require("mssql"); const dbConfig =
+                  require("../dbConfig");</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>async function</td>
+              <td><span class="ic">async function getAllXxx()</span></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>let connection outside try</td>
+              <td><span class="ic">let connection;</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Connect in try</td>
+              <td>
+                <span class="ic"
+                  >connection = await sql.connect(dbConfig);</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Query string</td>
+              <td>
+                <span class="ic">const query = "SELECT ... FROM Xxx";</span>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Request + input (for params)</td>
+              <td>
+                <span class="ic"
+                  >const request = connection.request(); request.input("id",
+                  id);</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Execute query</td>
+              <td>
+                <span class="ic"
+                  >const result = await request.query(query);</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Return data</td>
+              <td>
+                <span class="ic">return result.recordset;</span> or
+                <span class="ic">result.recordset[0]</span>
+              </td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>catch + throw</td>
+              <td>
+                <span class="ic"
+                  >catch (error) { console.error(...); throw error; }</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>finally + close</td>
+              <td>
+                <span class="ic"
+                  >finally { if (connection) { try { await connection.close(); }
+                  catch(e){} } }</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>module.exports</td>
+              <td><span class="ic">module.exports = { getAllXxx };</span></td>
+            </tr>
+          </table>
+        </div>
+        <div class="card">
+          <h3 class="c3">Template: write ANY controller function</h3>
+          <div class="hl o">
+            Checklist — every controller function needs ALL of these:
+          </div>
+          <table style="margin-top: 8px">
+            <tr>
+              <th>#</th>
+              <th>Element</th>
+              <th>Code</th>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Import model at top</td>
+              <td>
+                <span class="ic"
+                  >const XxxModel = require("../models/xxxModel");</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>async function with req, res</td>
+              <td>
+                <span class="ic">async function getAllXxx(req, res)</span>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>try block</td>
+              <td><span class="ic">try { ... }</span></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Extract from req if needed</td>
+              <td>
+                <span class="ic">parseInt(req.params.id)</span>,
+                <span class="ic">req.body</span>,
+                <span class="ic">req.query.x</span>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Call model with await</td>
+              <td>
+                <span class="ic">const data = await XxxModel.getAllXxx();</span>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Check null → 404</td>
+              <td>
+                <span class="ic"
+                  >if (!data) return res.status(404).json({error:"Not
+                  found"});</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Success response</td>
+              <td>
+                <span class="ic">res.json(data);</span> /
+                <span class="ic">res.status(201).json(data);</span> /
+                <span class="ic">res.status(204).send();</span>
+              </td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>catch → 500</td>
+              <td>
+                <span class="ic"
+                  >catch (error) { res.status(500).json({error:"Error
+                  message"}); }</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>module.exports</td>
+              <td><span class="ic">module.exports = { getAllXxx };</span></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Wire in app.js</td>
+              <td>
+                <span class="ic"
+                  >app.get("/xxx", xxxController.getAllXxx);</span
+                >
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- COMMON MISTAKES -->
+      <div class="card">
+        <h3 class="c6">⚠️ Common Mistakes to Avoid</h3>
+        <div class="g3">
+          <div>
+            <div class="hl r">
+              <b>1. Forgetting dotenv.config()</b><br />Must be FIRST in app.js
+              before any process.env access. Otherwise all env vars are
+              undefined.
+            </div>
+            <div class="hl r" style="margin-top: 6px">
+              <b>2. await without async</b><br />You can't use await in a
+              non-async function. Always mark function as async if it awaits
+              anything.
+            </div>
+            <div class="hl r" style="margin-top: 6px">
+              <b>3. Missing express.json()</b><br />Without
+              app.use(express.json()), req.body is undefined for JSON POST
+              requests.
+            </div>
+          </div>
+          <div>
+            <div class="hl r">
+              <b>4. /users/:id before /users/search</b><br />:id matches ANY
+              segment. search-style routes must come BEFORE parameterized
+              routes.
+            </div>
+            <div class="hl r" style="margin-top: 6px">
+              <b>5. String concatenation in SQL</b><br />NEVER use template
+              literals to build SQL with user input. Always use request.input()
+              + @param.
+            </div>
+            <div class="hl r" style="margin-top: 6px">
+              <b>6. No finally block</b><br />If query throws, connection never
+              closes → leak. Always close in finally.
+            </div>
+          </div>
+          <div>
+            <div class="hl r">
+              <b>7. Not re-throwing in catch</b><br />Model must throw error so
+              controller catch can send 500. Without throw, controller gets
+              undefined.
+            </div>
+            <div class="hl r" style="margin-top: 6px">
+              <b>8. Missing parseInt()</b><br />req.params.id is always a
+              string. SQL expects an integer. Use parseInt() in controller.
+            </div>
+            <div class="hl r" style="margin-top: 6px">
+              <b>9. Committing .env to git</b><br />.env must be in .gitignore.
+              Once in git history, credentials are compromised forever.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK REFERENCE TABLE -->
+      <div class="card">
+        <h3 class="c1">⚡ Master Quick Reference</h3>
+        <div class="g2">
+          <table>
+            <tr>
+              <th>What you want</th>
+              <th>How to do it</th>
+            </tr>
+            <tr>
+              <td>Read URL segment <span class="ic">/books/5</span></td>
+              <td><span class="ic">parseInt(req.params.id)</span></td>
+            </tr>
+            <tr>
+              <td>Read query string <span class="ic">?name=Dune</span></td>
+              <td><span class="ic">req.query.name</span></td>
+            </tr>
+            <tr>
+              <td>Read POST/PUT body</td>
+              <td>
+                <span class="ic">req.body.title</span> (needs express.json())
+              </td>
+            </tr>
+            <tr>
+              <td>Send success JSON</td>
+              <td><span class="ic">res.json(data)</span> (200 OK)</td>
+            </tr>
+            <tr>
+              <td>Send 201 Created</td>
+              <td><span class="ic">res.status(201).json(newItem)</span></td>
+            </tr>
+            <tr>
+              <td>Send 204 No Content</td>
+              <td><span class="ic">res.status(204).send()</span></td>
+            </tr>
+            <tr>
+              <td>Send 404 Not Found</td>
+              <td>
+                <span class="ic"
+                  >res.status(404).json({error:"Not found"})</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Send 400 Bad Request</td>
+              <td>
+                <span class="ic">res.status(400).json({error:"message"})</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Send 500 Server Error</td>
+              <td>
+                <span class="ic">res.status(500).json({error:"message"})</span>
+              </td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>What you want</th>
+              <th>How to do it</th>
+            </tr>
+            <tr>
+              <td>Connect to DB</td>
+              <td>
+                <span class="ic">connection = await sql.connect(dbConfig)</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Run simple query</td>
+              <td>
+                <span class="ic"
+                  >await connection.request().query("SELECT...")</span
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>Parameterized query</td>
+              <td>
+                <span class="ic">request.input("id", value)</span> +
+                <span class="ic">WHERE id = @id</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Get all rows</td>
+              <td><span class="ic">result.recordset</span></td>
+            </tr>
+            <tr>
+              <td>Get first row</td>
+              <td><span class="ic">result.recordset[0]</span></td>
+            </tr>
+            <tr>
+              <td>Check not found</td>
+              <td><span class="ic">result.recordset.length === 0</span></td>
+            </tr>
+            <tr>
+              <td>Check rows affected</td>
+              <td><span class="ic">result.rowsAffected[0] > 0</span></td>
+            </tr>
+            <tr>
+              <td>Get new INSERT id</td>
+              <td><span class="ic">SELECT SCOPE_IDENTITY() AS id</span></td>
+            </tr>
+            <tr>
+              <td>Search with LIKE</td>
+              <td><span class="ic">'%' + @searchTerm + '%'</span></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <hr />
+      <div
+        style="
+          text-align: center;
+          color: var(--mt);
+          font-size: 11px;
+          padding: 14px 0;
+        "
+      >
+        BED Complete Mega Cheatsheet Vol.2 · Practicals 1–6 · All topics ·
+        Q&amp;A Bank · Ngee Ann Polytechnic BED AY2026/27 Sem 1
+      </div>
+    </div>
+    <!-- /wrap -->
+  </body>
+</html>
