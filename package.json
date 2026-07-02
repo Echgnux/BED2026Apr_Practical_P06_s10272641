@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/Echgnux/BED2026Apr_Practical_P06_s10272641#readme",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mssql": "^12.5.2"
+    "joi": "^18.2.3",
+    "mssql": "^12.6.0"
   }
 }
