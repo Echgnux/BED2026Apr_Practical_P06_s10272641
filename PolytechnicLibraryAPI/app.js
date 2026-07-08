@@ -16,6 +16,7 @@ const {
   validateRegister,
   validateUserId,
 } = require("./middlewares/userValidation");
+const { verifyJWT } = require("./middlewares/authMiddleware");
 // Create Express app
 const app = express();
 const port = process.env.PORT || 3000;
@@ -41,14 +42,15 @@ app.delete("/users/:id", userController.deleteUser); // Delete user
 
 // Routes for books
 // Apply middleware *before* the controller function for routes that need it
-app.get("/books", bookController.getAllBooks);
+app.get("/books", verifyJWT, bookController.getAllBooks);
 app.get("/books/:book_id", validateBookId, bookController.getBookById); // Use validateBookId middleware
 app.post("/books", validateBook, bookController.createBook); // Use validateBook middleware
 // Add routes for PUT/DELETE if implemented, applying appropriate middleware
 app.put(
-  "/books/:book_id",
+  "/books/:book_id/availability",
   validateBookId,
   validateBook,
+  verifyJWT,
   bookController.updateBook,
 );
 app.delete("/books/:book_id", validateBookId, bookController.deleteBook);
