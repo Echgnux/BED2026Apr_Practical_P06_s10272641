@@ -31,7 +31,7 @@ function validateRegister(req, res, next) {
 
 function validateUserId(req, res, next) {
   const id = parseInt(req.params.id);
-  if (isNaN(id) || id <= 0) {
+  if (isNaN(user_id) || user_id <= 0) {
     return res
       .status(400)
       .json({ error: "Invalid user ID. ID must be a positive number" });

@@ -37,14 +37,14 @@ async function createUser(username, passwordHash, role) {
   try {
     connection = await sql.connect(dbConfig);
     const query =
-      "INSERT INTO Users (username, passwordHash, role) VALUES (@username, @passwordHash, @role); SELECT SCOPE_IDENTITY() AS id;";
+      "INSERT INTO Users (username, passwordHash, role) VALUES (@username, @passwordHash, @role); SELECT SCOPE_IDENTITY() AS user_id;";
     const request = connection.request();
     request.input("username", username);
     request.input("passwordHash", passwordHash);
     request.input("role", role);
     const result = await request.query(query);
 
-    const newUserId = result.recordset[0].id;
+    const newUserId = result.recordset[0].user_id;
     return await getUserById(newUserId); // ← FIXED: was getBookById
   } catch (error) {
     console.error("Database error:", error);
@@ -83,13 +83,14 @@ async function getAllUsers() {
 }
 
 // Get user by ID
-async function getUserById(id) {
+async function getUserById(user_id) {
   let connection;
   try {
     connection = await sql.connect(dbConfig);
-    const query = "SELECT id, username, email FROM Users WHERE id = @id";
+    const query =
+      "SELECT user_id, username, passwordHash, role FROM Users WHERE user_id = @user_id";
     const request = connection.request();
-    request.input("id", id);
+    request.input("user_id", user_id);
     const result = await request.query(query);
     if (result.recordset.length === 0) {
       return null;
@@ -246,4 +247,5 @@ module.exports = {
   deleteUser,
   searchUsers, // ← ADDED
   getUsersWithBooks, // ← ADDED
+  getUserByUsername,
 };
