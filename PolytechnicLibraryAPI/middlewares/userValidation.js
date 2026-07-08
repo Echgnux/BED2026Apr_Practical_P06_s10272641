@@ -1,0 +1,45 @@
+const Joi = require("joi");
+
+const userSchema = Joi.object({
+  username: Joi.string().min(1).max(50).required().messages({
+    "string.base": "Username must be a string",
+    "string.empty": "Username cannot be empty",
+    "string.min": "Username must be at least 1 character long",
+    "string.max": "Username cannot exceed 50 characters",
+    "any.required": "Username is required",
+  }),
+  password: Joi.string().min(8).required().messages({
+    "string.min": "Password must be at least 8 characters long",
+    "string.pattern.base":
+      "Password must contain at least one uppercase letter, one lowercase letter, and one number",
+    "any.required": "Password is required",
+  }),
+  role: Joi.string().valid("member", "librarian").required().messages({
+    "any.only": "Role must be either 'member' or 'librarian'",
+    "any.required": "Role is required",
+  }),
+});
+
+function validateRegister(req, res, next) {
+  const { error } = userSchema.validate(req.body, { abortEarly: false });
+  if (error) {
+    const errorMessage = error.details.map((d) => d.message).join(", ");
+    return res.status(400).json({ error: errorMessage });
+  }
+  next();
+}
+
+function validateUserId(req, res, next) {
+  const id = parseInt(req.params.id);
+  if (isNaN(id) || id <= 0) {
+    return res
+      .status(400)
+      .json({ error: "Invalid user ID. ID must be a positive number" });
+  }
+  next();
+}
+
+module.exports = {
+  validateRegister,
+  validateUserId,
+};

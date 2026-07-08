@@ -10,7 +10,18 @@ const {
   validateBook,
   validateBookId,
 } = require("./middlewares/bookValidation"); // import Book Validation Middleware
-
+const authController = require("./controllers/authController");
+const userController = require("./controllers/userController");
+const {
+  validateRegister,
+  createUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+  searchUsers, // ← ADDED
+  getUsersWithBooks, // ← ADDED
+} = require("./middlewares/userValidation");
 // Create Express app
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,6 +31,19 @@ app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 // --- Add other general middleware here (e.g., logging, security headers) ---
 app.use(express.static(path.join(__dirname, "public")));
+
+//Routes for authentication
+app.post("/register", authController.registerUser); // Register user
+app.post("/login", authController.login); // Login user
+
+// Routes for users
+app.post("/users", userController.createUser); // Create user
+app.get("/users", userController.getAllUsers); // Get all users
+app.get("/users/search", userController.searchUsers);
+app.get("/users/with-books", userController.getUsersWithBooks);
+app.get("/users/:id", userController.getUserById); // Get user by ID
+app.put("/users/:id", userController.updateUser); // Update user
+app.delete("/users/:id", userController.deleteUser); // Delete user
 
 // Routes for books
 // Apply middleware *before* the controller function for routes that need it
