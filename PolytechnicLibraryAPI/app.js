@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Routes for authentication
 app.post("/register", validateRegister, authController.registerUser); // Register user
-//app.post("/login", authController.login); // Login user
+app.post("/login", authController.login); // Login user
 
 // Routes for users
 app.post("/users", userController.createUser); // Create user
