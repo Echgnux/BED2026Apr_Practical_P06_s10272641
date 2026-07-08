@@ -82,6 +82,7 @@ async function createBook(bookData) {
   }
 }
 
+//book_id, title, author, availability FROM Books WHERE book_id = @book_id"
 // Update book by ID
 async function updateBook(book_id, bookData) {
   let connection;

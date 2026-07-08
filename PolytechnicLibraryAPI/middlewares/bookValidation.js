@@ -17,6 +17,13 @@ const bookSchema = Joi.object({
     "any.required": "Author is required",
   }),
   // Add validation for other fields if necessary (e.g., year, genre)
+  availability: Joi.string().min(1).max(1).required().messages({
+    "string.base": "Availability must be a string",
+    "string.empty": "Availability cannot be empty",
+    "string.min": "Availability must be at least 1 character long",
+    "string.max": "Availability cannot exceed 1 characters",
+    "any.required": "Availability is required",
+  }),
 });
 
 // Middleware to validate book data (for POST/PUT)
