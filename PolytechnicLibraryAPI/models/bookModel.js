@@ -139,10 +139,45 @@ async function deleteBook(book_id) {
   }
 }
 
+// Update only the availability field for a book
+async function updateAvailability(book_id, availability) {
+  let connection;
+  try {
+    connection = await sql.connect(dbConfig);
+    const query = `
+      UPDATE Books SET availability = @availability
+      WHERE book_id = @book_id
+    `;
+    const request = connection.request();
+    request.input("book_id", book_id);
+    request.input("availability", availability);
+    const result = await request.query(query);
+
+    if (result.rowsAffected[0] === 0) {
+      return null; // no book matched this ID
+    }
+
+    return await getBookById(book_id); // return the updated book
+  } catch (error) {
+    console.error("Database error:", error);
+    throw error;
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error("Error closing connection:", err);
+      }
+    }
+  }
+}
+
+
 module.exports = {
   getAllBooks,
   getBookById,
   createBook,
   updateBook,
   deleteBook,
+  updateAvailability,
 };

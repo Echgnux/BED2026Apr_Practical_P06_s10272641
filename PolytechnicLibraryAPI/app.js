@@ -48,6 +48,11 @@ app.post("/books", validateBook, bookController.createBook); // Use validateBook
 // Add routes for PUT/DELETE if implemented, applying appropriate middleware
 app.put(
   "/books/:book_id/availability",
+  verifyJWT,
+  bookController.updateAvailability,
+);
+app.put(
+  "/books/:book_id/availability",
   validateBookId,
   validateBook,
   verifyJWT,

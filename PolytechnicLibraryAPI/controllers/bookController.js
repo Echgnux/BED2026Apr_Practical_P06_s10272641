@@ -67,10 +67,31 @@ async function deleteBook(req, res) {
 
     res
       .status(200)
-      .json({ message: `Book with ID ${book_id} has been successfully deleted` });
+      .json({
+        message: `Book with ID ${book_id} has been successfully deleted`,
+      });
   } catch (error) {
     console.error("Controller error:", error);
     res.status(500).json({ error: "Error deleting book" });
+  }
+}
+
+async function updateAvailability(req, res) {
+  const book_id = parseInt(req.params.book_id);
+  const { availability } = req.body;
+
+  try {
+    const updatedBook = await bookModel.updateAvailability(
+      book_id,
+      availability,
+    );
+    if (!updatedBook) {
+      return res.status(404).json({ error: "Book not found" });
+    }
+    return res.status(200).json(updatedBook);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal server error" });
   }
 }
 
@@ -80,4 +101,5 @@ module.exports = {
   createBook,
   updateBook,
   deleteBook,
+  updateAvailability,
 };
