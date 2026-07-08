@@ -14,13 +14,7 @@ const authController = require("./controllers/authController");
 const userController = require("./controllers/userController");
 const {
   validateRegister,
-  createUser,
-  getAllUsers,
-  getUserById,
-  updateUser,
-  deleteUser,
-  searchUsers, // ← ADDED
-  getUsersWithBooks, // ← ADDED
+  validateUserId,
 } = require("./middlewares/userValidation");
 // Create Express app
 const app = express();
@@ -33,8 +27,8 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bo
 app.use(express.static(path.join(__dirname, "public")));
 
 //Routes for authentication
-app.post("/register", authController.registerUser); // Register user
-app.post("/login", authController.login); // Login user
+app.post("/register", validateRegister, authController.registerUser); // Register user
+//app.post("/login", authController.login); // Login user
 
 // Routes for users
 app.post("/users", userController.createUser); // Create user

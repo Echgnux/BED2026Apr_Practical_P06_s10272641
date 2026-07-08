@@ -6,6 +6,31 @@ username (VARCHAR(255), UNIQUE)
 passwordHash (VARCHAR(255))
 role (VARCHAR(20), ('member', 'librarian'))*/
 
+// Get user by username (helper function for registerUser)
+async function getUserByUsername(username) {
+  let connection;
+  try {
+    connection = await sql.connect(dbConfig);
+    const request = connection.request();
+    request.input("username", username);
+    const result = await request.query(
+      "SELECT * FROM Users WHERE username = @username",
+    );
+    return result.recordset[0]; // undefined if no match found
+  } catch (error) {
+    console.error("Database error:", error);
+    throw error;
+  } finally {
+    if (connection) {
+      try {
+        await connection.close();
+      } catch (err) {
+        console.error("Error closing connection:", err);
+      }
+    }
+  }
+}
+
 // Create new user
 async function createUser(username, passwordHash, role) {
   let connection;
