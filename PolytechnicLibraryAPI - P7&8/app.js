@@ -1,5 +1,7 @@
 const path = require("path");
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger-output.json"); // Import generated spec
 const sql = require("mssql");
 const dotenv = require("dotenv");
 // Load environment variables
@@ -20,7 +22,7 @@ const { verifyJWT } = require("./middlewares/authMiddleware");
 // Create Express app
 const app = express();
 const port = process.env.PORT || 3000;
-
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Middleware (Parsing request bodies)
 app.use(express.json()); // Parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
